@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/css/bootstrap")
+    @RenderSection("styles", required: false)
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    @RenderBody()
+
+    
+    @Scripts.Render("~/bundles/jquery") @*Jquery loading and fallback*@
+    <script type="text/javascript">
+        if (typeof jQuery == 'undefined') {
+            document.write('<script src="../../Scripts/jquery-3.1.0.min.js"');
+        }
+    </script>
+
+    @Scripts.Render("~/bundles/bootstrap") @*Bootstrap loading and fallback*@
+    <script>
+        if (typeof ($.fn.modal) === 'undefined') {
+            $("head").prepend("<link rel=\"stylesheet\" href=\"../../Content/css/bootstrap.min.css\" />");
+            document.write('<script src="../../Scripts/bootstrap.min.js">\x3C/script>');
+        }
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>
+

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "onlinePlatby", "onlinePlatby\onlinePlatby.csproj", "{2FC78F8A-80FA-481B-B59D-58C17EF37B86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "onlinePlatby.Tests", "onlinePlatby.Tests\onlinePlatby.Tests.csproj", "{34E5F7AE-506E-42B8-8931-6425CF90CB34}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2FC78F8A-80FA-481B-B59D-58C17EF37B86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FC78F8A-80FA-481B-B59D-58C17EF37B86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FC78F8A-80FA-481B-B59D-58C17EF37B86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FC78F8A-80FA-481B-B59D-58C17EF37B86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34E5F7AE-506E-42B8-8931-6425CF90CB34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34E5F7AE-506E-42B8-8931-6425CF90CB34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34E5F7AE-506E-42B8-8931-6425CF90CB34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34E5F7AE-506E-42B8-8931-6425CF90CB34}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
