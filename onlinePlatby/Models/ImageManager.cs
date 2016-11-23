@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+
+using System;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 
 namespace onlinePlatby.Models
@@ -45,7 +41,7 @@ namespace onlinePlatby.Models
 
             if (image.ContentLength > 0) // is there any data in file?
             {
-                using (Image img = Image.FromStream(image.InputStream))
+                using (System.Drawing.Image img = System.Drawing.Image.FromStream(image.InputStream))
                 {
                     if (img.Width >= img.Height) // is image horizontal?
                     {

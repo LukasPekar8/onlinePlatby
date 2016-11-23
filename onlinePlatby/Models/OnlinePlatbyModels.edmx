@@ -1,0 +1,1591 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="onlinePlatbyModels.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Addresses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="Company" Type="nvarchar" MaxLength="64" />
+          <Property Name="Country" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="Street" Type="nvarchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="BasketProducts">
+          <Key>
+            <PropertyRef Name="BasketId" />
+            <PropertyRef Name="ProductVariantId" />
+          </Key>
+          <Property Name="BasketId" Type="int" Nullable="false" />
+          <Property Name="ProductVariantId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Baskets">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IPAddress" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="LastDateEdited" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CategoryProducts">
+          <Key>
+            <PropertyRef Name="ProductVariantId" />
+            <PropertyRef Name="ProductCategoryId" />
+          </Key>
+          <Property Name="ProductVariantId" Type="int" Nullable="false" />
+          <Property Name="ProductCategoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Currencies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="ConvertValue" Type="decimal" Precision="20" Scale="6" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DigitalProducts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductVariantId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Url" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="ExpirationDate" Type="datetime" />
+          <Property Name="DaysForDownload" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" />
+          <Property Name="Url" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="PaymentTypeId" Type="int" Nullable="false" />
+          <Property Name="CurrencyId" Type="int" Nullable="false" />
+          <Property Name="OrderStateId" Type="int" Nullable="false" />
+          <Property Name="TransportId" Type="int" Nullable="false" />
+          <Property Name="DeliveryAddressId" Type="int" Nullable="false" />
+          <Property Name="BillingAddressId" Type="int" Nullable="false" />
+          <Property Name="IPAddress" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="CostWithoutTax" Type="decimal" Precision="20" Scale="4" Nullable="false" />
+          <Property Name="CostWithTax" Type="decimal" Precision="20" Scale="4" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="PaymentTypeFee" Type="decimal" Precision="20" Scale="4" Nullable="false" />
+          <Property Name="TransportFee" Type="decimal" Precision="20" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderStates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="PaymentTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurrencyId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="Fee" Type="decimal" Precision="20" Scale="4" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'onlinePlatby.dbo.ProductAttachments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductAttachments">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ProductVariantId" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Url" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductVariantId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+          <Property Name="Url" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductCategories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UpperCategoryId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="DisplayOrder" Type="int" />
+          <Property Name="MetaTitle" Type="nvarchar" MaxLength="128" />
+          <Property Name="MetaKeywords" Type="nvarchar" MaxLength="128" />
+          <Property Name="MetaDescription" Type="nvarchar" MaxLength="256" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductImages">
+          <Key>
+            <PropertyRef Name="ImageId" />
+            <PropertyRef Name="ProductVariantId" />
+          </Key>
+          <Property Name="ImageId" Type="int" Nullable="false" />
+          <Property Name="ProductVariantId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductProperties">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="ShortDescription" Type="nvarchar(max)" />
+          <Property Name="LongDescription" Type="nvarchar(max)" />
+          <Property Name="Closeout" Type="bit" Nullable="false" />
+          <Property Name="Tax" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Weight" Type="float" />
+          <Property Name="Length" Type="float" />
+          <Property Name="Width" Type="float" />
+          <Property Name="Height" Type="float" />
+          <Property Name="Availability" Type="nvarchar" MaxLength="15" />
+          <Property Name="Orderable" Type="bit" Nullable="false" />
+          <Property Name="Visible" Type="bit" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductStates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="ProductVariants">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="UniqueCombination" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="ProductStateId" Type="int" />
+          <Property Name="MainImageId" Type="int" />
+          <Property Name="PurchasePriceCurrencyId" Type="int" Nullable="false" />
+          <Property Name="SalePriceCurrencyId" Type="int" Nullable="false" />
+          <Property Name="RecommendedPriceCurrencyId" Type="int" Nullable="false" />
+          <Property Name="PurchasePrice" Type="decimal" Precision="20" Scale="4" Nullable="false" />
+          <Property Name="RecommendedPrice" Type="decimal" Precision="20" Scale="4" Nullable="false" />
+          <Property Name="SalePrice" Type="decimal" Precision="20" Scale="4" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="PropertyCombinations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductVariantId" Type="int" Nullable="false" />
+          <Property Name="ProductPropertyValue" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProductPropertyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Transports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurrencyId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="TermsAndConditions" Type="nvarchar(max)" />
+          <Property Name="TimeOfDelivery" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Fee" Type="decimal" Precision="20" Scale="4" Nullable="false" />
+        </EntityType>
+        <Association Name="AddressHasCustomer">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BasketProductHasBasket">
+          <End Role="Baskets" Type="Self.Baskets" Multiplicity="1" />
+          <End Role="BasketProducts" Type="Self.BasketProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Baskets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BasketProducts">
+              <PropertyRef Name="BasketId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BasketProductHasProductVariant">
+          <End Role="ProductVariants" Type="Self.ProductVariants" Multiplicity="1" />
+          <End Role="BasketProducts" Type="Self.BasketProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductVariants">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BasketProducts">
+              <PropertyRef Name="ProductVariantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CategoryProductHasProductCategory">
+          <End Role="ProductCategories" Type="Self.ProductCategories" Multiplicity="1" />
+          <End Role="CategoryProducts" Type="Self.CategoryProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoryProducts">
+              <PropertyRef Name="ProductCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CategoryProductHasProductVariant">
+          <End Role="ProductVariants" Type="Self.ProductVariants" Multiplicity="1" />
+          <End Role="CategoryProducts" Type="Self.CategoryProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductVariants">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoryProducts">
+              <PropertyRef Name="ProductVariantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DigitalProductHasProductVariand">
+          <End Role="ProductVariants" Type="Self.ProductVariants" Multiplicity="1" />
+          <End Role="DigitalProducts" Type="Self.DigitalProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductVariants">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DigitalProducts">
+              <PropertyRef Name="ProductVariantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentTypes_Currencies">
+          <End Role="Currencies" Type="Self.Currencies" Multiplicity="1" />
+          <End Role="PaymentTypes" Type="Self.PaymentTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentTypes">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MainImageHas1OrInfiniteProductVariants">
+          <End Role="Images" Type="Self.Images" Multiplicity="0..1" />
+          <End Role="ProductVariants" Type="Self.ProductVariants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Images">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductVariants">
+              <PropertyRef Name="MainImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderHasBillingAddress">
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="BillingAddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderHasCustomer">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderHasDeliveryAddress">
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="DeliveryAddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderHasOrderState">
+          <End Role="OrderStates" Type="Self.OrderStates" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStates">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="OrderStateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderHasPaymentType">
+          <End Role="PaymentTypes" Type="Self.PaymentTypes" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="PaymentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderHasTransport">
+          <End Role="Transports" Type="Self.Transports" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="TransportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductAttachmentHasProductVariant">
+          <End Role="ProductVariants" Type="Self.ProductVariants" Multiplicity="1" />
+          <End Role="ProductAttachments" Type="Self.ProductAttachments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductVariants">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductAttachments">
+              <PropertyRef Name="ProductVariantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductCategoryCanHaveUpperCategory">
+          <End Role="ProductCategories" Type="Self.ProductCategories" Multiplicity="0..1" />
+          <End Role="ProductCategories1" Type="Self.ProductCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductCategories1">
+              <PropertyRef Name="UpperCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductHas0ToInfiniteProductVariants">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ProductVariants" Type="Self.ProductVariants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductVariants">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductImageHasImage">
+          <End Role="Images" Type="Self.Images" Multiplicity="1" />
+          <End Role="ProductImages" Type="Self.ProductImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Images">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductImages">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductImageHasProductVariant">
+          <End Role="ProductVariants" Type="Self.ProductVariants" Multiplicity="1" />
+          <End Role="ProductImages" Type="Self.ProductImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductVariants">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductImages">
+              <PropertyRef Name="ProductVariantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductVariantHas1ProductState">
+          <End Role="ProductStates" Type="Self.ProductStates" Multiplicity="0..1" />
+          <End Role="ProductVariants" Type="Self.ProductVariants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductStates">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductVariants">
+              <PropertyRef Name="ProductStateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PropertyCombinationHasProductProperty">
+          <End Role="ProductProperties" Type="Self.ProductProperties" Multiplicity="1" />
+          <End Role="PropertyCombinations" Type="Self.PropertyCombinations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductProperties">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PropertyCombinations">
+              <PropertyRef Name="ProductPropertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PropertyCombinationsHasProductVarian">
+          <End Role="ProductVariants" Type="Self.ProductVariants" Multiplicity="1" />
+          <End Role="PropertyCombinations" Type="Self.PropertyCombinations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductVariants">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PropertyCombinations">
+              <PropertyRef Name="ProductVariantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PurchasePriceHasCurrency">
+          <End Role="Currencies" Type="Self.Currencies" Multiplicity="1" />
+          <End Role="ProductVariants" Type="Self.ProductVariants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductVariants">
+              <PropertyRef Name="PurchasePriceCurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RecommendedPriceHasCurrency">
+          <End Role="Currencies" Type="Self.Currencies" Multiplicity="1" />
+          <End Role="ProductVariants" Type="Self.ProductVariants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductVariants">
+              <PropertyRef Name="RecommendedPriceCurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SalePriceHasCurrency">
+          <End Role="Currencies" Type="Self.Currencies" Multiplicity="1" />
+          <End Role="ProductVariants" Type="Self.ProductVariants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductVariants">
+              <PropertyRef Name="SalePriceCurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TransportHasCurrency">
+          <End Role="Currencies" Type="Self.Currencies" Multiplicity="1" />
+          <End Role="Transports" Type="Self.Transports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transports">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="onlinePlatbyModelsStoreContainer">
+          <EntitySet Name="Addresses" EntityType="Self.Addresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BasketProducts" EntityType="Self.BasketProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Baskets" EntityType="Self.Baskets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryProducts" EntityType="Self.CategoryProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Currencies" EntityType="Self.Currencies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DigitalProducts" EntityType="Self.DigitalProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderStates" EntityType="Self.OrderStates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentTypes" EntityType="Self.PaymentTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductCategories" EntityType="Self.ProductCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductImages" EntityType="Self.ProductImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductProperties" EntityType="Self.ProductProperties" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductStates" EntityType="Self.ProductStates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductVariants" EntityType="Self.ProductVariants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyCombinations" EntityType="Self.PropertyCombinations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transports" EntityType="Self.Transports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductAttachments" EntityType="Self.ProductAttachments" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ProductAttachments].[Id] AS [Id], 
+    [ProductAttachments].[ProductVariantId] AS [ProductVariantId], 
+    [ProductAttachments].[Name] AS [Name], 
+    [ProductAttachments].[Description] AS [Description], 
+    [ProductAttachments].[Url] AS [Url]
+    FROM [dbo].[ProductAttachments] AS [ProductAttachments]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="AddressHasCustomer" Association="Self.AddressHasCustomer">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="BasketProductHasBasket" Association="Self.BasketProductHasBasket">
+            <End Role="Baskets" EntitySet="Baskets" />
+            <End Role="BasketProducts" EntitySet="BasketProducts" />
+          </AssociationSet>
+          <AssociationSet Name="BasketProductHasProductVariant" Association="Self.BasketProductHasProductVariant">
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+            <End Role="BasketProducts" EntitySet="BasketProducts" />
+          </AssociationSet>
+          <AssociationSet Name="CategoryProductHasProductCategory" Association="Self.CategoryProductHasProductCategory">
+            <End Role="ProductCategories" EntitySet="ProductCategories" />
+            <End Role="CategoryProducts" EntitySet="CategoryProducts" />
+          </AssociationSet>
+          <AssociationSet Name="CategoryProductHasProductVariant" Association="Self.CategoryProductHasProductVariant">
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+            <End Role="CategoryProducts" EntitySet="CategoryProducts" />
+          </AssociationSet>
+          <AssociationSet Name="DigitalProductHasProductVariand" Association="Self.DigitalProductHasProductVariand">
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+            <End Role="DigitalProducts" EntitySet="DigitalProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentTypes_Currencies" Association="Self.FK_PaymentTypes_Currencies">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="PaymentTypes" EntitySet="PaymentTypes" />
+          </AssociationSet>
+          <AssociationSet Name="MainImageHas1OrInfiniteProductVariants" Association="Self.MainImageHas1OrInfiniteProductVariants">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+          </AssociationSet>
+          <AssociationSet Name="OrderHasBillingAddress" Association="Self.OrderHasBillingAddress">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="OrderHasCustomer" Association="Self.OrderHasCustomer">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="OrderHasDeliveryAddress" Association="Self.OrderHasDeliveryAddress">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="OrderHasOrderState" Association="Self.OrderHasOrderState">
+            <End Role="OrderStates" EntitySet="OrderStates" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="OrderHasPaymentType" Association="Self.OrderHasPaymentType">
+            <End Role="PaymentTypes" EntitySet="PaymentTypes" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="OrderHasTransport" Association="Self.OrderHasTransport">
+            <End Role="Transports" EntitySet="Transports" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="ProductAttachmentHasProductVariant" Association="Self.ProductAttachmentHasProductVariant">
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+            <End Role="ProductAttachments" EntitySet="ProductAttachments" />
+          </AssociationSet>
+          <AssociationSet Name="ProductCategoryCanHaveUpperCategory" Association="Self.ProductCategoryCanHaveUpperCategory">
+            <End Role="ProductCategories" EntitySet="ProductCategories" />
+            <End Role="ProductCategories1" EntitySet="ProductCategories" />
+          </AssociationSet>
+          <AssociationSet Name="ProductHas0ToInfiniteProductVariants" Association="Self.ProductHas0ToInfiniteProductVariants">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+          </AssociationSet>
+          <AssociationSet Name="ProductImageHasImage" Association="Self.ProductImageHasImage">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="ProductImages" EntitySet="ProductImages" />
+          </AssociationSet>
+          <AssociationSet Name="ProductImageHasProductVariant" Association="Self.ProductImageHasProductVariant">
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+            <End Role="ProductImages" EntitySet="ProductImages" />
+          </AssociationSet>
+          <AssociationSet Name="ProductVariantHas1ProductState" Association="Self.ProductVariantHas1ProductState">
+            <End Role="ProductStates" EntitySet="ProductStates" />
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+          </AssociationSet>
+          <AssociationSet Name="PropertyCombinationHasProductProperty" Association="Self.PropertyCombinationHasProductProperty">
+            <End Role="ProductProperties" EntitySet="ProductProperties" />
+            <End Role="PropertyCombinations" EntitySet="PropertyCombinations" />
+          </AssociationSet>
+          <AssociationSet Name="PropertyCombinationsHasProductVarian" Association="Self.PropertyCombinationsHasProductVarian">
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+            <End Role="PropertyCombinations" EntitySet="PropertyCombinations" />
+          </AssociationSet>
+          <AssociationSet Name="PurchasePriceHasCurrency" Association="Self.PurchasePriceHasCurrency">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+          </AssociationSet>
+          <AssociationSet Name="RecommendedPriceHasCurrency" Association="Self.RecommendedPriceHasCurrency">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+          </AssociationSet>
+          <AssociationSet Name="SalePriceHasCurrency" Association="Self.SalePriceHasCurrency">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+          </AssociationSet>
+          <AssociationSet Name="TransportHasCurrency" Association="Self.TransportHasCurrency">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="Transports" EntitySet="Transports" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="onlinePlatbyModels" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="Company" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer" Relationship="Self.AddressHasCustomer" FromRole="Addresses" ToRole="Customers" />
+          <NavigationProperty Name="Orders" Relationship="Self.OrderHasBillingAddress" FromRole="Addresses" ToRole="Orders" />
+          <NavigationProperty Name="Orders1" Relationship="Self.OrderHasDeliveryAddress" FromRole="Addresses" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Basket">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IPAddress" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastDateEdited" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ProductVariants" Relationship="Self.BasketProducts" FromRole="Baskets" ToRole="ProductVariants" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ConvertValue" Type="Decimal" Precision="20" Scale="6" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PaymentTypes" Relationship="Self.FK_PaymentTypes_Currencies" FromRole="Currencies" ToRole="PaymentTypes" />
+          <NavigationProperty Name="ProductVariants" Relationship="Self.PurchasePriceHasCurrency" FromRole="Currencies" ToRole="ProductVariants" />
+          <NavigationProperty Name="ProductVariants1" Relationship="Self.RecommendedPriceHasCurrency" FromRole="Currencies" ToRole="ProductVariants" />
+          <NavigationProperty Name="ProductVariants2" Relationship="Self.SalePriceHasCurrency" FromRole="Currencies" ToRole="ProductVariants" />
+          <NavigationProperty Name="Transports" Relationship="Self.TransportHasCurrency" FromRole="Currencies" ToRole="Transports" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="Phone" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Addresses" Relationship="Self.AddressHasCustomer" FromRole="Customers" ToRole="Addresses" />
+          <NavigationProperty Name="Orders" Relationship="Self.OrderHasCustomer" FromRole="Customers" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="DigitalProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductVariantId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Url" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExpirationDate" Type="DateTime" Precision="3" />
+          <Property Name="DaysForDownload" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ProductVariant" Relationship="Self.DigitalProductHasProductVariand" FromRole="DigitalProducts" ToRole="ProductVariants" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProductVariants" Relationship="Self.MainImageHas1OrInfiniteProductVariants" FromRole="Images" ToRole="ProductVariants" />
+          <NavigationProperty Name="ProductVariants1" Relationship="Self.ProductImages" FromRole="Images" ToRole="ProductVariants" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="PaymentTypeId" Type="Int32" Nullable="false" />
+          <Property Name="CurrencyId" Type="Int32" Nullable="false" />
+          <Property Name="OrderStateId" Type="Int32" Nullable="false" />
+          <Property Name="TransportId" Type="Int32" Nullable="false" />
+          <Property Name="DeliveryAddressId" Type="Int32" Nullable="false" />
+          <Property Name="BillingAddressId" Type="Int32" Nullable="false" />
+          <Property Name="IPAddress" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CostWithoutTax" Type="Decimal" Precision="20" Scale="4" Nullable="false" />
+          <Property Name="CostWithTax" Type="Decimal" Precision="20" Scale="4" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PaymentTypeFee" Type="Decimal" Precision="20" Scale="4" Nullable="false" />
+          <Property Name="TransportFee" Type="Decimal" Precision="20" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="Self.OrderHasBillingAddress" FromRole="Orders" ToRole="Addresses" />
+          <NavigationProperty Name="Address1" Relationship="Self.OrderHasDeliveryAddress" FromRole="Orders" ToRole="Addresses" />
+          <NavigationProperty Name="Customer" Relationship="Self.OrderHasCustomer" FromRole="Orders" ToRole="Customers" />
+          <NavigationProperty Name="OrderState" Relationship="Self.OrderHasOrderState" FromRole="Orders" ToRole="OrderStates" />
+          <NavigationProperty Name="PaymentType" Relationship="Self.OrderHasPaymentType" FromRole="Orders" ToRole="PaymentTypes" />
+          <NavigationProperty Name="Transport" Relationship="Self.OrderHasTransport" FromRole="Orders" ToRole="Transports" />
+        </EntityType>
+        <EntityType Name="OrderState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="Self.OrderHasOrderState" FromRole="OrderStates" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="PaymentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurrencyId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fee" Type="Decimal" Precision="20" Scale="4" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Currency" Relationship="Self.FK_PaymentTypes_Currencies" FromRole="PaymentTypes" ToRole="Currencies" />
+          <NavigationProperty Name="Orders" Relationship="Self.OrderHasPaymentType" FromRole="PaymentTypes" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UpperCategoryId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayOrder" Type="Int32" />
+          <Property Name="MetaTitle" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDescription" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ProductCategories1" Relationship="Self.ProductCategoryCanHaveUpperCategory" FromRole="ProductCategories" ToRole="ProductCategories1" />
+          <NavigationProperty Name="ProductCategory1" Relationship="Self.ProductCategoryCanHaveUpperCategory" FromRole="ProductCategories1" ToRole="ProductCategories" />
+          <NavigationProperty Name="ProductVariants" Relationship="Self.CategoryProducts" FromRole="ProductCategories" ToRole="ProductVariants" />
+        </EntityType>
+        <EntityType Name="ProductProperty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PropertyCombinations" Relationship="Self.PropertyCombinationHasProductProperty" FromRole="ProductProperties" ToRole="PropertyCombinations" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShortDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LongDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Closeout" Type="Boolean" Nullable="false" />
+          <Property Name="Tax" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Weight" Type="Double" />
+          <Property Name="Length" Type="Double" />
+          <Property Name="Width" Type="Double" />
+          <Property Name="Height" Type="Double" />
+          <Property Name="Availability" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Orderable" Type="Boolean" Nullable="false" />
+          <Property Name="Visible" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ProductVariants" Relationship="Self.ProductHas0ToInfiniteProductVariants" FromRole="Products" ToRole="ProductVariants" />
+        </EntityType>
+        <EntityType Name="ProductState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductVariants" Relationship="Self.ProductVariantHas1ProductState" FromRole="ProductStates" ToRole="ProductVariants" />
+        </EntityType>
+        <EntityType Name="ProductVariant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="UniqueCombination" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductStateId" Type="Int32" />
+          <Property Name="MainImageId" Type="Int32" />
+          <Property Name="PurchasePriceCurrencyId" Type="Int32" Nullable="false" />
+          <Property Name="SalePriceCurrencyId" Type="Int32" Nullable="false" />
+          <Property Name="RecommendedPriceCurrencyId" Type="Int32" Nullable="false" />
+          <Property Name="PurchasePrice" Type="Decimal" Precision="20" Scale="4" Nullable="false" />
+          <Property Name="RecommendedPrice" Type="Decimal" Precision="20" Scale="4" Nullable="false" />
+          <Property Name="SalePrice" Type="Decimal" Precision="20" Scale="4" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Currency" Relationship="Self.PurchasePriceHasCurrency" FromRole="ProductVariants" ToRole="Currencies" />
+          <NavigationProperty Name="Currency1" Relationship="Self.RecommendedPriceHasCurrency" FromRole="ProductVariants" ToRole="Currencies" />
+          <NavigationProperty Name="Currency2" Relationship="Self.SalePriceHasCurrency" FromRole="ProductVariants" ToRole="Currencies" />
+          <NavigationProperty Name="DigitalProducts" Relationship="Self.DigitalProductHasProductVariand" FromRole="ProductVariants" ToRole="DigitalProducts" />
+          <NavigationProperty Name="Image" Relationship="Self.MainImageHas1OrInfiniteProductVariants" FromRole="ProductVariants" ToRole="Images" />
+          <NavigationProperty Name="Product" Relationship="Self.ProductHas0ToInfiniteProductVariants" FromRole="ProductVariants" ToRole="Products" />
+          <NavigationProperty Name="ProductState" Relationship="Self.ProductVariantHas1ProductState" FromRole="ProductVariants" ToRole="ProductStates" />
+          <NavigationProperty Name="ProductAttachments" Relationship="Self.ProductAttachmentHasProductVariant" FromRole="ProductVariants" ToRole="ProductAttachments" />
+          <NavigationProperty Name="PropertyCombinations" Relationship="Self.PropertyCombinationsHasProductVarian" FromRole="ProductVariants" ToRole="PropertyCombinations" />
+          <NavigationProperty Name="Baskets" Relationship="Self.BasketProducts" FromRole="ProductVariants" ToRole="Baskets" />
+          <NavigationProperty Name="ProductCategories" Relationship="Self.CategoryProducts" FromRole="ProductVariants" ToRole="ProductCategories" />
+          <NavigationProperty Name="Images" Relationship="Self.ProductImages" FromRole="ProductVariants" ToRole="Images" />
+        </EntityType>
+        <EntityType Name="PropertyCombination">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductVariantId" Type="Int32" Nullable="false" />
+          <Property Name="ProductPropertyValue" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductPropertyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ProductProperty" Relationship="Self.PropertyCombinationHasProductProperty" FromRole="PropertyCombinations" ToRole="ProductProperties" />
+          <NavigationProperty Name="ProductVariant" Relationship="Self.PropertyCombinationsHasProductVarian" FromRole="PropertyCombinations" ToRole="ProductVariants" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Transport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurrencyId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TermsAndConditions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TimeOfDelivery" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="Fee" Type="Decimal" Precision="20" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Currency" Relationship="Self.TransportHasCurrency" FromRole="Transports" ToRole="Currencies" />
+          <NavigationProperty Name="Orders" Relationship="Self.OrderHasTransport" FromRole="Transports" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="ProductAttachment">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ProductVariantId" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Url" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductVariantId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProductVariant" Relationship="Self.ProductAttachmentHasProductVariant" FromRole="ProductAttachments" ToRole="ProductVariants" />
+        </EntityType>
+        <Association Name="AddressHasCustomer">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Addresses" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderHasBillingAddress">
+          <End Role="Addresses" Type="Self.Address" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="BillingAddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderHasDeliveryAddress">
+          <End Role="Addresses" Type="Self.Address" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="DeliveryAddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentTypes_Currencies">
+          <End Role="Currencies" Type="Self.Currency" Multiplicity="1" />
+          <End Role="PaymentTypes" Type="Self.PaymentType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentTypes">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PurchasePriceHasCurrency">
+          <End Role="Currencies" Type="Self.Currency" Multiplicity="1" />
+          <End Role="ProductVariants" Type="Self.ProductVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductVariants">
+              <PropertyRef Name="PurchasePriceCurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RecommendedPriceHasCurrency">
+          <End Role="Currencies" Type="Self.Currency" Multiplicity="1" />
+          <End Role="ProductVariants" Type="Self.ProductVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductVariants">
+              <PropertyRef Name="RecommendedPriceCurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SalePriceHasCurrency">
+          <End Role="Currencies" Type="Self.Currency" Multiplicity="1" />
+          <End Role="ProductVariants" Type="Self.ProductVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductVariants">
+              <PropertyRef Name="SalePriceCurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TransportHasCurrency">
+          <End Role="Currencies" Type="Self.Currency" Multiplicity="1" />
+          <End Role="Transports" Type="Self.Transport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transports">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderHasCustomer">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DigitalProductHasProductVariand">
+          <End Role="ProductVariants" Type="Self.ProductVariant" Multiplicity="1" />
+          <End Role="DigitalProducts" Type="Self.DigitalProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductVariants">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DigitalProducts">
+              <PropertyRef Name="ProductVariantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MainImageHas1OrInfiniteProductVariants">
+          <End Role="Images" Type="Self.Image" Multiplicity="0..1" />
+          <End Role="ProductVariants" Type="Self.ProductVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Images">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductVariants">
+              <PropertyRef Name="MainImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderHasOrderState">
+          <End Role="OrderStates" Type="Self.OrderState" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStates">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="OrderStateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderHasPaymentType">
+          <End Role="PaymentTypes" Type="Self.PaymentType" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="PaymentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderHasTransport">
+          <End Role="Transports" Type="Self.Transport" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="TransportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductCategoryCanHaveUpperCategory">
+          <End Role="ProductCategories" Type="Self.ProductCategory" Multiplicity="0..1" />
+          <End Role="ProductCategories1" Type="Self.ProductCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductCategories1">
+              <PropertyRef Name="UpperCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PropertyCombinationHasProductProperty">
+          <End Role="ProductProperties" Type="Self.ProductProperty" Multiplicity="1" />
+          <End Role="PropertyCombinations" Type="Self.PropertyCombination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductProperties">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PropertyCombinations">
+              <PropertyRef Name="ProductPropertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductHas0ToInfiniteProductVariants">
+          <End Role="Products" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductVariants" Type="Self.ProductVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductVariants">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductVariantHas1ProductState">
+          <End Role="ProductStates" Type="Self.ProductState" Multiplicity="0..1" />
+          <End Role="ProductVariants" Type="Self.ProductVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductStates">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductVariants">
+              <PropertyRef Name="ProductStateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductAttachmentHasProductVariant">
+          <End Role="ProductVariants" Type="Self.ProductVariant" Multiplicity="1" />
+          <End Role="ProductAttachments" Type="Self.ProductAttachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductVariants">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductAttachments">
+              <PropertyRef Name="ProductVariantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PropertyCombinationsHasProductVarian">
+          <End Role="ProductVariants" Type="Self.ProductVariant" Multiplicity="1" />
+          <End Role="PropertyCombinations" Type="Self.PropertyCombination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductVariants">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PropertyCombinations">
+              <PropertyRef Name="ProductVariantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BasketProducts">
+          <End Role="Baskets" Type="Self.Basket" Multiplicity="*" />
+          <End Role="ProductVariants" Type="Self.ProductVariant" Multiplicity="*" />
+        </Association>
+        <Association Name="CategoryProducts">
+          <End Role="ProductCategories" Type="Self.ProductCategory" Multiplicity="*" />
+          <End Role="ProductVariants" Type="Self.ProductVariant" Multiplicity="*" />
+        </Association>
+        <Association Name="ProductImages">
+          <End Role="Images" Type="Self.Image" Multiplicity="*" />
+          <End Role="ProductVariants" Type="Self.ProductVariant" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="onlinePlatbyEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresses" EntityType="Self.Address" />
+          <EntitySet Name="Baskets" EntityType="Self.Basket" />
+          <EntitySet Name="Currencies" EntityType="Self.Currency" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="DigitalProducts" EntityType="Self.DigitalProduct" />
+          <EntitySet Name="Images" EntityType="Self.Image" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="OrderStates" EntityType="Self.OrderState" />
+          <EntitySet Name="PaymentTypes" EntityType="Self.PaymentType" />
+          <EntitySet Name="ProductCategories" EntityType="Self.ProductCategory" />
+          <EntitySet Name="ProductProperties" EntityType="Self.ProductProperty" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="ProductStates" EntityType="Self.ProductState" />
+          <EntitySet Name="ProductVariants" EntityType="Self.ProductVariant" />
+          <EntitySet Name="PropertyCombinations" EntityType="Self.PropertyCombination" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Transports" EntityType="Self.Transport" />
+          <EntitySet Name="ProductAttachments" EntityType="Self.ProductAttachment" />
+          <AssociationSet Name="AddressHasCustomer" Association="Self.AddressHasCustomer">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="OrderHasBillingAddress" Association="Self.OrderHasBillingAddress">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="OrderHasDeliveryAddress" Association="Self.OrderHasDeliveryAddress">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentTypes_Currencies" Association="Self.FK_PaymentTypes_Currencies">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="PaymentTypes" EntitySet="PaymentTypes" />
+          </AssociationSet>
+          <AssociationSet Name="PurchasePriceHasCurrency" Association="Self.PurchasePriceHasCurrency">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+          </AssociationSet>
+          <AssociationSet Name="RecommendedPriceHasCurrency" Association="Self.RecommendedPriceHasCurrency">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+          </AssociationSet>
+          <AssociationSet Name="SalePriceHasCurrency" Association="Self.SalePriceHasCurrency">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+          </AssociationSet>
+          <AssociationSet Name="TransportHasCurrency" Association="Self.TransportHasCurrency">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="Transports" EntitySet="Transports" />
+          </AssociationSet>
+          <AssociationSet Name="OrderHasCustomer" Association="Self.OrderHasCustomer">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="DigitalProductHasProductVariand" Association="Self.DigitalProductHasProductVariand">
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+            <End Role="DigitalProducts" EntitySet="DigitalProducts" />
+          </AssociationSet>
+          <AssociationSet Name="MainImageHas1OrInfiniteProductVariants" Association="Self.MainImageHas1OrInfiniteProductVariants">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+          </AssociationSet>
+          <AssociationSet Name="OrderHasOrderState" Association="Self.OrderHasOrderState">
+            <End Role="OrderStates" EntitySet="OrderStates" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="OrderHasPaymentType" Association="Self.OrderHasPaymentType">
+            <End Role="PaymentTypes" EntitySet="PaymentTypes" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="OrderHasTransport" Association="Self.OrderHasTransport">
+            <End Role="Transports" EntitySet="Transports" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="ProductCategoryCanHaveUpperCategory" Association="Self.ProductCategoryCanHaveUpperCategory">
+            <End Role="ProductCategories" EntitySet="ProductCategories" />
+            <End Role="ProductCategories1" EntitySet="ProductCategories" />
+          </AssociationSet>
+          <AssociationSet Name="PropertyCombinationHasProductProperty" Association="Self.PropertyCombinationHasProductProperty">
+            <End Role="ProductProperties" EntitySet="ProductProperties" />
+            <End Role="PropertyCombinations" EntitySet="PropertyCombinations" />
+          </AssociationSet>
+          <AssociationSet Name="ProductHas0ToInfiniteProductVariants" Association="Self.ProductHas0ToInfiniteProductVariants">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+          </AssociationSet>
+          <AssociationSet Name="ProductVariantHas1ProductState" Association="Self.ProductVariantHas1ProductState">
+            <End Role="ProductStates" EntitySet="ProductStates" />
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+          </AssociationSet>
+          <AssociationSet Name="ProductAttachmentHasProductVariant" Association="Self.ProductAttachmentHasProductVariant">
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+            <End Role="ProductAttachments" EntitySet="ProductAttachments" />
+          </AssociationSet>
+          <AssociationSet Name="PropertyCombinationsHasProductVarian" Association="Self.PropertyCombinationsHasProductVarian">
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+            <End Role="PropertyCombinations" EntitySet="PropertyCombinations" />
+          </AssociationSet>
+          <AssociationSet Name="BasketProducts" Association="Self.BasketProducts">
+            <End Role="Baskets" EntitySet="Baskets" />
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+          </AssociationSet>
+          <AssociationSet Name="CategoryProducts" Association="Self.CategoryProducts">
+            <End Role="ProductCategories" EntitySet="ProductCategories" />
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+          </AssociationSet>
+          <AssociationSet Name="ProductImages" Association="Self.ProductImages">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="ProductVariants" EntitySet="ProductVariants" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="onlinePlatbyModelsStoreContainer" CdmEntityContainer="onlinePlatbyEntities1">
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="onlinePlatbyModels.Address">
+              <MappingFragment StoreEntitySet="Addresses">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Baskets">
+            <EntityTypeMapping TypeName="onlinePlatbyModels.Basket">
+              <MappingFragment StoreEntitySet="Baskets">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="LastDateEdited" ColumnName="LastDateEdited" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Currencies">
+            <EntityTypeMapping TypeName="onlinePlatbyModels.Currency">
+              <MappingFragment StoreEntitySet="Currencies">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="ConvertValue" ColumnName="ConvertValue" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="onlinePlatbyModels.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DigitalProducts">
+            <EntityTypeMapping TypeName="onlinePlatbyModels.DigitalProduct">
+              <MappingFragment StoreEntitySet="DigitalProducts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductVariantId" ColumnName="ProductVariantId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+                <ScalarProperty Name="DaysForDownload" ColumnName="DaysForDownload" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="onlinePlatbyModels.Image">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="onlinePlatbyModels.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="OrderStateId" ColumnName="OrderStateId" />
+                <ScalarProperty Name="TransportId" ColumnName="TransportId" />
+                <ScalarProperty Name="DeliveryAddressId" ColumnName="DeliveryAddressId" />
+                <ScalarProperty Name="BillingAddressId" ColumnName="BillingAddressId" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="CostWithoutTax" ColumnName="CostWithoutTax" />
+                <ScalarProperty Name="CostWithTax" ColumnName="CostWithTax" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="PaymentTypeFee" ColumnName="PaymentTypeFee" />
+                <ScalarProperty Name="TransportFee" ColumnName="TransportFee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderStates">
+            <EntityTypeMapping TypeName="onlinePlatbyModels.OrderState">
+              <MappingFragment StoreEntitySet="OrderStates">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentTypes">
+            <EntityTypeMapping TypeName="onlinePlatbyModels.PaymentType">
+              <MappingFragment StoreEntitySet="PaymentTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Fee" ColumnName="Fee" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductCategories">
+            <EntityTypeMapping TypeName="onlinePlatbyModels.ProductCategory">
+              <MappingFragment StoreEntitySet="ProductCategories">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UpperCategoryId" ColumnName="UpperCategoryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductProperties">
+            <EntityTypeMapping TypeName="onlinePlatbyModels.ProductProperty">
+              <MappingFragment StoreEntitySet="ProductProperties">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="onlinePlatbyModels.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="LongDescription" ColumnName="LongDescription" />
+                <ScalarProperty Name="Closeout" ColumnName="Closeout" />
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Availability" ColumnName="Availability" />
+                <ScalarProperty Name="Orderable" ColumnName="Orderable" />
+                <ScalarProperty Name="Visible" ColumnName="Visible" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductStates">
+            <EntityTypeMapping TypeName="onlinePlatbyModels.ProductState">
+              <MappingFragment StoreEntitySet="ProductStates">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductVariants">
+            <EntityTypeMapping TypeName="onlinePlatbyModels.ProductVariant">
+              <MappingFragment StoreEntitySet="ProductVariants">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="UniqueCombination" ColumnName="UniqueCombination" />
+                <ScalarProperty Name="ProductStateId" ColumnName="ProductStateId" />
+                <ScalarProperty Name="MainImageId" ColumnName="MainImageId" />
+                <ScalarProperty Name="PurchasePriceCurrencyId" ColumnName="PurchasePriceCurrencyId" />
+                <ScalarProperty Name="SalePriceCurrencyId" ColumnName="SalePriceCurrencyId" />
+                <ScalarProperty Name="RecommendedPriceCurrencyId" ColumnName="RecommendedPriceCurrencyId" />
+                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
+                <ScalarProperty Name="RecommendedPrice" ColumnName="RecommendedPrice" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyCombinations">
+            <EntityTypeMapping TypeName="onlinePlatbyModels.PropertyCombination">
+              <MappingFragment StoreEntitySet="PropertyCombinations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductVariantId" ColumnName="ProductVariantId" />
+                <ScalarProperty Name="ProductPropertyValue" ColumnName="ProductPropertyValue" />
+                <ScalarProperty Name="ProductPropertyId" ColumnName="ProductPropertyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="onlinePlatbyModels.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transports">
+            <EntityTypeMapping TypeName="onlinePlatbyModels.Transport">
+              <MappingFragment StoreEntitySet="Transports">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TermsAndConditions" ColumnName="TermsAndConditions" />
+                <ScalarProperty Name="TimeOfDelivery" ColumnName="TimeOfDelivery" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Fee" ColumnName="Fee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductAttachments">
+            <EntityTypeMapping TypeName="onlinePlatbyModels.ProductAttachment">
+              <MappingFragment StoreEntitySet="ProductAttachments">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductVariantId" ColumnName="ProductVariantId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="BasketProducts" TypeName="onlinePlatbyModels.BasketProducts" StoreEntitySet="BasketProducts">
+            <EndProperty Name="Baskets">
+              <ScalarProperty Name="Id" ColumnName="BasketId" />
+            </EndProperty>
+            <EndProperty Name="ProductVariants">
+              <ScalarProperty Name="Id" ColumnName="ProductVariantId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="CategoryProducts" TypeName="onlinePlatbyModels.CategoryProducts" StoreEntitySet="CategoryProducts">
+            <EndProperty Name="ProductCategories">
+              <ScalarProperty Name="Id" ColumnName="ProductCategoryId" />
+            </EndProperty>
+            <EndProperty Name="ProductVariants">
+              <ScalarProperty Name="Id" ColumnName="ProductVariantId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ProductImages" TypeName="onlinePlatbyModels.ProductImages" StoreEntitySet="ProductImages">
+            <EndProperty Name="Images">
+              <ScalarProperty Name="Id" ColumnName="ImageId" />
+            </EndProperty>
+            <EndProperty Name="ProductVariants">
+              <ScalarProperty Name="Id" ColumnName="ProductVariantId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

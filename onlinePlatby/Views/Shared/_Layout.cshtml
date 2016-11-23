@@ -11,24 +11,100 @@
 
 </head>
 <body>
-    @RenderBody()
+    <div id="mainNav" class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="@Url.Action("Index", "Home")">Bakers Photo(shop)</a>
+                </div>
 
-    
-    @Scripts.Render("~/bundles/jquery") @*Jquery loading and fallback*@
-    <script type="text/javascript">
-        if (typeof jQuery == 'undefined') {
-            document.write('<script src="../../Scripts/jquery-3.1.0.min.js"');
-        }
-    </script>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Kategorie 1</a></li>
+                        <li><a href="#">Kategorie 2</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kategorie 3 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Podkategorie</a></li>
+                                <li><a href="#">Podkategorie</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-right">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Vyhledat">
+                        </div>
+                        <button type="submit" class="btn btn-default">Hledat</button>
+                    </form>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
 
-    @Scripts.Render("~/bundles/bootstrap") @*Bootstrap loading and fallback*@
-    <script>
-        if (typeof ($.fn.modal) === 'undefined') {
-            $("head").prepend("<link rel=\"stylesheet\" href=\"../../Content/css/bootstrap.min.css\" />");
-            document.write('<script src="../../Scripts/bootstrap.min.js">\x3C/script>');
-        }
-    </script>
-    @RenderSection("scripts", required: false)
+        @RenderBody()
+
+        <div id="footer" class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12 text-center">
+                        <h4>Nadpis</h4>
+                        <p><a href="#">Odkaz</a></p>
+                        <p><a href="#">Odkaz</a></p>
+                        <p><a href="#">Odkaz</a></p>
+                        <p><a href="#">Odkaz</a></p>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 text-center">
+                        <h4>Nadpis</h4>
+                        <p><a href="#">Odkaz</a></p>
+                        <p><a href="#">Odkaz</a></p>
+                        <p><a href="#">Odkaz</a></p>
+                        <p><a href="#">Odkaz</a></p>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 text-center">
+                        <h4>Nadpis</h4>
+                        <p><a href="#">Odkaz</a></p>
+                        <p><a href="#">Odkaz</a></p>
+                        <p><a href="#">Odkaz</a></p>
+                        <p><a href="#">Odkaz</a></p>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 text-center">
+                        <h4>Nadpis</h4>
+                        <img src="http://placehold.it/120x120" alt="obr" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                &copy; @DateTime.Now.Year Lukáš Pekař
+            </div>
+        </div>
+
+    </div>
+
+            @Scripts.Render("~/bundles/jquery") @*Jquery loading and fallback*@
+            <script type="text/javascript">
+                if (typeof jQuery == 'undefined') {
+                    document.write('<script src="../../Scripts/jquery-3.1.0.min.js"');
+                }
+            </script>
+
+            @Scripts.Render("~/bundles/bootstrap") @*Bootstrap loading and fallback*@
+            <script>
+                if (typeof ($.fn.modal) === 'undefined') {
+                    $("head").prepend("<link rel=\"stylesheet\" href=\"../../Content/css/bootstrap.min.css\" />");
+                    document.write('<script src="../../Scripts/bootstrap.min.js">\x3C/script>');
+                }
+            </script>
+            @RenderSection("scripts", required: false)
+
 </body>
 
 </html>
