@@ -1,6 +1,53 @@
 ﻿
 @{
-    ViewBag.Title = "Homepage";
+    ViewBag.Title = "Hlavní stránka";
 }
 
-<h1 class="text-center">Vítej, ve skutečném světě.</h1>
+<h1 class="text-center">Vítej, ve skutečném světě. velké &#352;</h1>
+<p>Bacon ipsum dolor amet tenderloin turducken beef tail ribeye bacon ham hock.
+     Jerky corned beef t-bone tongue bacon sausage. Rump venison sirloin doner
+     leberkas pork belly ball tip. Meatloaf capicola pastrami biltong turducken
+     salami. Jerky ribeye cupim chicken. Ribeye swine burgdoggen, frankfurter
+     bacon porchetta sausage.</p>
+
+<!--Products-->
+<section class="products">
+    <h2>Nejprodávanější produkty</h2>
+    <div class="row">
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="http://placehold.it/242x200" alt="produkt">
+                <div class="caption">
+                    <h3>Produkt 1</h3>
+                    <p>Cupim prosciutto biltong pork corned beef shankle alcatra hamburger porchetta.</p>
+                    <p><a href="#" class="btn btn-primary" role="button">Detail</a> <a href="#" class="btn btn-default" role="button">Koupit</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="http://placehold.it/242x200" alt="produkt">
+                <div class="caption">
+                    <h3>Produkt 2</h3>
+                    <p>Cupim prosciutto biltong pork corned beef shankle alcatra hamburger porchetta.</p>
+                    <p><a href="#" class="btn btn-primary" role="button">Detail</a> <a href="#" class="btn btn-default" role="button">Koupit</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="http://placehold.it/242x200" alt="produkt">
+                <div class="caption">
+                    <h3>Produkt 3</h3>
+                    <p>Cupim prosciutto biltong pork corned beef shankle alcatra hamburger porchetta.</p>
+                    <p><a href="#" class="btn btn-primary" role="button">Detail</a> <a href="#" class="btn btn-default" role="button">Koupit</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="margin">
+            <a href="@Url.Action("Category", "Home")" class="btn btn-primary">Více produktů</a>
+        </div>
+    </div>
+</section>

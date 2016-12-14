@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>@ViewBag.Title</title>
+    <title>Baker's Photo - @ViewBag.Title</title>
     @Styles.Render("~/css/bootstrap")
     @RenderSection("styles", required: false)
     @Scripts.Render("~/bundles/modernizr")
@@ -28,22 +28,28 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Kategorie 1</a></li>
-                        <li><a href="#">Kategorie 2</a></li>
+                        <li><a href="@Url.Action("Category", "Home")">Kategorie 1</a></li>
+                        <li><a href="@Url.Action("Category", "Home")">Kategorie 2</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kategorie 3 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Podkategorie</a></li>
-                                <li><a href="#">Podkategorie</a></li>
+                                <li><a href="@Url.Action("Category", "Home")">Podkategorie</a></li>
+                                <li><a href="@Url.Action("Category", "Home")">Podkategorie</a></li>
                             </ul>
                         </li>
                     </ul>
-                    <form class="navbar-form navbar-right">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Vyhledat">
-                        </div>
-                        <button type="submit" class="btn btn-default">Hledat</button>
-                    </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="@Url.Action("Index", "Basket")"><span class="glyphicon-briefcase"></span></a></li>
+                    <li>
+                        <form class="navbar-form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Vyhledat">
+                            </div>
+                            <button type="submit" class="btn btn-default">Hledat</button>
+                        </form>
+                    </li>
+                </ul>
+
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
@@ -54,28 +60,27 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-3 col-sm-6 col-xs-12 text-center">
-                        <h4>Nadpis</h4>
-                        <p><a href="#">Odkaz</a></p>
-                        <p><a href="#">Odkaz</a></p>
-                        <p><a href="#">Odkaz</a></p>
-                        <p><a href="#">Odkaz</a></p>
+                        <h4>Pro zákazníky</h4>
+                        <p><a href="#">Obchodní podmínky</a></p>
+                        <p><a href="#">Způsoby platby</a></p>
+                        <p><a href="#">Způsoby dopravy</a></p>
+                        <p><a href="#">Věrnostní program</a></p>
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12 text-center">
-                        <h4>Nadpis</h4>
-                        <p><a href="#">Odkaz</a></p>
-                        <p><a href="#">Odkaz</a></p>
-                        <p><a href="#">Odkaz</a></p>
-                        <p><a href="#">Odkaz</a></p>
+                        <h4>Nabízíme</h4>
+                        <p><a href="@Url.Action("Category", "Home")">Kategorie 1</a></p>
+                        <p><a href="@Url.Action("Category", "Home")">Kategorie 2</a></p>
+                        <p><a href="@Url.Action("Category", "Home")">Kategorie 3</a></p>
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12 text-center">
-                        <h4>Nadpis</h4>
-                        <p><a href="#">Odkaz</a></p>
-                        <p><a href="#">Odkaz</a></p>
-                        <p><a href="#">Odkaz</a></p>
-                        <p><a href="#">Odkaz</a></p>
+                        <h4>Sledujte nás na: </h4>
+                        <p><a href="#">Facebooku</a></p>
+                        <p><a href="#">Instagramu</a></p>
+                        <p><a href="#">Google+</a></p>
+                        <p><a href="#">Pinterestu</a></p>
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12 text-center">
-                        <h4>Nadpis</h4>
+                        <h4>Baker's shop</h4>
                         <img src="http://placehold.it/120x120" alt="obr" />
                     </div>
                 </div>

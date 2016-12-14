@@ -1,0 +1,29 @@
+﻿
+.thumbnail{
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+}
+.thumbnail img{
+    margin-top: 2rem;
+}
+.margin{
+    margin: 1rem auto;
+}
+.productImage img{
+    max-width: 400px;
+    width: 100%;
+    margin: 1rem auto;
+    display: block;
+}
+#productImages a{
+    display: inline-block;
+    margin: 0.1rem 0rem;
+    max-width: 200px;
+}
+#productImages img{
+margin-top: 0.5rem;
+width: 100%;
+}
+#productImages .wrapper{
+    text-align: center;
+}

@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Detail Produktu";
+}
+@section styles{ 
+    <link href="~/Content/lightbox.css" rel="stylesheet" />
+}
+@section scripts{
+    <script src="~/Scripts/lightbox-2.6.js"></script>
+}
+
+    <h2>Název Produktu</h2>
+
+    @* Product main image & Description *@
+    <div class="row">
+        <div class="productImage col-md-6 col-sm-12">
+            <img src="http://placehold.it/400x400" alt="obrázek produktu" />
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div>
+                <h3>Popis produktu</h3>
+                <p>
+                    Fusce blandit suscipit tortor vitae sollicitudin. Quisque ac lacus non nisl placerat eleifend in vel libero.
+                    Ut semper elementum blandit. In ut fermentum velit, a convallis est. Cras fermentum felis eget egestas pellentesque.
+                    Phasellus ultricies ultrices nunc, sed ultrices ligula vestibulum in. Nunc sollicitudin varius tortor sit amet mollis.
+                    Pellentesque pretium laoreet suscipit. Vestibulum gravida venenatis augue, vitae dignissim purus imperdiet nec.
+                </p>
+            </div>
+            <div>
+                <a class="btn btn-primary">Přidat do košíku</a>
+            </div>
+        </div>
+    </div>
+
+    @*Other photos*@
+    <div id="productImages" class="row">
+        <div class="wrapper">
+            <a data-lightbox="productImages" href="http://placehold.it/1600x700"><img src="http://placehold.it/400x300" alt="obrázek produktu 1" /></a>
+            <a data-lightbox="productImages" href="http://placehold.it/1600x800"><img src="http://placehold.it/400x300" alt="obrázek produktu 2" /></a>
+            <a data-lightbox="productImages" href="http://placehold.it/1600x900"><img src="http://placehold.it/400x300" alt="obrázek produktu 3" /></a>
+            <a data-lightbox="productImages" href="http://placehold.it/1600x1000"><img src="http://placehold.it/400x300" alt="obrázek produktu 4" /></a>
+        </div>
+    </div>
+
+    @*Big Description*@
+    <div class="row">
+        <h3>Popis produktu</h3>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec justo tellus. Donec tincidunt
+            , erat at condimentum bibendum, ante ante commodo risus, non congue erat justo fringilla ligula.
+            Pellentesque ac quam sit amet eros dapibus finibus quis vitae tortor. Etiam hendrerit quam nec dignissim porta.
+            Morbi porttitor, tellus quis elementum condimentum, metus justo dapibus quam, vel feugiat erat arcu sed sem. Nam
+            accumsan eu mauris vitae mattis. Integer mi metus, consectetur vel lacinia at, elementum a risus. Proin vel maximus
+            felis. Curabitur efficitur aliquam justo, sit amet sodales augue convallis in. Donec porttitor odio ipsum,
+            non viverra est porttitor nec. Suspendisse sit amet fermentum lectus, eu elementum lorem. Etiam suscipit mi qui
+            s maximus efficitur. Maecenas fringilla placerat mollis.
+        </p>
+        <p class="text-center"><img src="http://placehold.it/800x400" alt="obraz v popisu" /></p>
+        <p>
+            Nam sagittis aliquet ultricies. Suspendisse viverra volutpat condimentum.
+            In condimentum et nulla et blandit. Donec sodales eros ut tristique suscipit.
+            Integer id ante nulla. Nunc euismod magna a mi elementum, ac scelerisque arcu placerat.
+            Ut lacinia scelerisque erat, sed suscipit nibh egestas eu. Etiam molestie mauris tortor,
+            et venenatis mi condimentum at.
+        </p>
+    </div>

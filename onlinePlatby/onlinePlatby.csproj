@@ -166,6 +166,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BasketController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DbContexts\AppDb.cs" />
@@ -252,6 +253,9 @@
   <ItemGroup>
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\products.css" />
+    <Content Include="Content\lightbox.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -265,9 +269,16 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>OnlinePlatbyModels.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="img\close.png" />
+    <Content Include="img\loading.gif" />
+    <Content Include="img\next.png" />
+    <Content Include="img\prev.png" />
     <Content Include="Models\OnlinePlatbyModels.edmx.diagram">
       <DependentUpon>OnlinePlatbyModels.edmx</DependentUpon>
     </Content>
+    <Content Include="sass\_variables.sass" />
+    <Content Include="sass\screen.sass" />
+    <Content Include="sass\lightbox.sass" />
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="Models\OnlinePlatbyModels.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -292,6 +303,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\lightbox-2.6.js" />
+    <Content Include="Scripts\lightbox-2.6.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -328,12 +341,16 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\Category.cshtml" />
+    <Content Include="Views\Home\ProductDetail.cshtml" />
+    <Content Include="Views\Basket\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\appData\" />
     <Folder Include="Content\img\" />
     <Folder Include="Scripts\myScripts\" />
+    <Folder Include="Views\Baske\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

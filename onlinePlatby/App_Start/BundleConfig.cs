@@ -23,9 +23,10 @@ namespace onlinePlatby
                 bootstrapCdnJsPath).Include(
                 "~/Scripts/bootstrap.js"));
 
-            bundles.Add(new StyleBundle("~/css/bootstrap",
-                bootstrapCdnPath).Include(
-                "~/Content/css/bootstrap.min.css"));
+            bundles.Add(new StyleBundle("~/css/bootstrap").Include(
+                "~/Content/css/bootstrap.min.css",
+                "~/Content/css/main.css",
+                "~/Content/css/products.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
