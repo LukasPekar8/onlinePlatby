@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ef2c225f577e44509d83d0db98e7a205" Name="Diagram1">
+        <EntityTypeShape EntityType="onlinePlatbyModel.Address" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlinePlatbyModel.BasketProduct" Width="1.5" PointX="8.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlinePlatbyModel.Basket" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlinePlatbyModel.CategoryProduct" Width="1.5" PointX="8.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlinePlatbyModel.Currency" Width="1.5" PointX="0.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlinePlatbyModel.Customer" Width="1.5" PointX="0.75" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlinePlatbyModel.DigitalProduct" Width="1.5" PointX="8.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlinePlatbyModel.Image" Width="1.5" PointX="3.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlinePlatbyModel.Order" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlinePlatbyModel.OrderState" Width="1.5" PointX="3" PointY="28.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlinePlatbyModel.PaymentType" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlinePlatbyModel.ProductCategory" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlinePlatbyModel.ProductProperty" Width="1.5" PointX="9" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlinePlatbyModel.Product" Width="1.5" PointX="3.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlinePlatbyModel.ProductState" Width="1.5" PointX="3.75" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlinePlatbyModel.ProductVariant" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlinePlatbyModel.PropertyCombination" Width="1.5" PointX="11.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlinePlatbyModel.sysdiagram" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlinePlatbyModel.Transport" Width="1.5" PointX="3" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlinePlatbyModel.ProductAttachment" Width="1.5" PointX="8.25" PointY="20.75" IsExpanded="true" />
+        <AssociationConnector Association="onlinePlatbyModel.AddressHasCustomer" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.OrderHasBillingAddress" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.OrderHasDeliveryAddress" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.BasketProductHasBasket" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.BasketProductHasProductVariant" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.CategoryProductHasProductCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.CategoryProductHasProductVariant" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.FK_PaymentTypes_Currencies" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.PurchasePriceHasCurrency" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.RecommendedPriceHasCurrency" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.SalePriceHasCurrency" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.TransportHasCurrency" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.OrderHasCustomer" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.DigitalProductHasProductVariand" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.MainImageHas1OrInfiniteProductVariants" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.OrderHasOrderState" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.OrderHasPaymentType" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.OrderHasTransport" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.ProductCategoryCanHaveUpperCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.PropertyCombinationHasProductProperty" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.ProductHas0ToInfiniteProductVariants" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.ProductVariantHas1ProductState" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.ProductAttachmentHasProductVariant" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.PropertyCombinationsHasProductVarian" ManuallyRouted="false" />
+        <AssociationConnector Association="onlinePlatbyModel.ProductImages" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

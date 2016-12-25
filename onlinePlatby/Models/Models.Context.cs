@@ -13,10 +13,10 @@ namespace onlinePlatby.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class onlinePlatbyEntities1 : DbContext
+    public partial class onlinePlatbyEntities3 : DbContext
     {
-        public onlinePlatbyEntities1()
-            : base("name=onlinePlatbyEntities1")
+        public onlinePlatbyEntities3()
+            : base("name=onlinePlatbyEntities3")
         {
         }
     
@@ -26,7 +26,9 @@ namespace onlinePlatby.Models
         }
     
         public virtual DbSet<Address> Addresses { get; set; }
+        public virtual DbSet<BasketProduct> BasketProducts { get; set; }
         public virtual DbSet<Basket> Baskets { get; set; }
+        public virtual DbSet<CategoryProduct> CategoryProducts { get; set; }
         public virtual DbSet<Currency> Currencies { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<DigitalProduct> DigitalProducts { get; set; }

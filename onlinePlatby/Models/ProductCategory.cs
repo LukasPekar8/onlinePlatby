@@ -17,8 +17,8 @@ namespace onlinePlatby.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ProductCategory()
         {
+            this.CategoryProducts = new HashSet<CategoryProduct>();
             this.ProductCategories1 = new HashSet<ProductCategory>();
-            this.ProductVariants = new HashSet<ProductVariant>();
         }
     
         public int Id { get; set; }
@@ -32,9 +32,9 @@ namespace onlinePlatby.Models
         public bool Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CategoryProduct> CategoryProducts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductCategory> ProductCategories1 { get; set; }
         public virtual ProductCategory ProductCategory1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductVariant> ProductVariants { get; set; }
     }
 }

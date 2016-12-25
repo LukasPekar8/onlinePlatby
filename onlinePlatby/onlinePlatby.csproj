@@ -46,6 +46,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -176,81 +177,115 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs">
-      <DependentUpon>OnlinePlatbyModels.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Basket.cs">
-      <DependentUpon>OnlinePlatbyModels.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BasketProduct.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CategoryProduct.cs">
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Currency.cs">
-      <DependentUpon>OnlinePlatbyModels.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
-      <DependentUpon>OnlinePlatbyModels.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DigitalProduct.cs">
-      <DependentUpon>OnlinePlatbyModels.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Image.cs">
-      <DependentUpon>OnlinePlatbyModels.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ImageManager.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\OnlinePlatbyModels.Context.cs">
+    <Compile Include="Models\Models.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OnlinePlatbyModels.Context.tt</DependentUpon>
+      <DependentUpon>Models.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OnlinePlatbyModels.cs">
+    <Compile Include="Models\Models.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OnlinePlatbyModels.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OnlinePlatbyModels.Designer.cs">
+    <Compile Include="Models\Models.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OnlinePlatbyModels.edmx</DependentUpon>
+      <DependentUpon>Models.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Order.cs">
-      <DependentUpon>OnlinePlatbyModels.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OrderState.cs">
-      <DependentUpon>OnlinePlatbyModels.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PaymentType.cs">
-      <DependentUpon>OnlinePlatbyModels.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
-      <DependentUpon>OnlinePlatbyModels.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductAttachment.cs">
-      <DependentUpon>OnlinePlatbyModels.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductCategory.cs">
-      <DependentUpon>OnlinePlatbyModels.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductProperty.cs">
-      <DependentUpon>OnlinePlatbyModels.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductState.cs">
-      <DependentUpon>OnlinePlatbyModels.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductVariant.cs">
-      <DependentUpon>OnlinePlatbyModels.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PropertyCombination.cs">
-      <DependentUpon>OnlinePlatbyModels.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>OnlinePlatbyModels.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Transport.cs">
-      <DependentUpon>OnlinePlatbyModels.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\ProductCategoryVM.cs" />
+    <Compile Include="Models\ViewModels\ProductVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\appData\Products\Season_1\Min\2679.jpg" />
+    <Content Include="Content\appData\Products\Season_1\Min\41.jpg" />
+    <Content Include="Content\appData\Products\Season_1\Min\674.jpg" />
+    <Content Include="Content\appData\Products\Season_1\Normal\2679.jpg" />
+    <Content Include="Content\appData\Products\Season_1\Normal\41.jpg" />
+    <Content Include="Content\appData\Products\Season_1\Normal\674.jpg" />
+    <Content Include="Content\appData\Products\Season_2\Min\2681.jpg" />
+    <Content Include="Content\appData\Products\Season_2\Min\2844.jpg" />
+    <Content Include="Content\appData\Products\Season_2\Min\2847.jpg" />
+    <Content Include="Content\appData\Products\Season_2\Min\2848.jpg" />
+    <Content Include="Content\appData\Products\Season_2\Min\3236.jpg" />
+    <Content Include="Content\appData\Products\Season_2\Normal\2681.jpg" />
+    <Content Include="Content\appData\Products\Season_2\Normal\2844.jpg" />
+    <Content Include="Content\appData\Products\Season_2\Normal\2847.jpg" />
+    <Content Include="Content\appData\Products\Season_2\Normal\2848.jpg" />
+    <Content Include="Content\appData\Products\Season_2\Normal\3236.jpg" />
+    <Content Include="Content\appData\Products\Season_3\Min\3237.jpg" />
+    <Content Include="Content\appData\Products\Season_3\Min\3240.jpg" />
+    <Content Include="Content\appData\Products\Season_3\Normal\3237.jpg" />
+    <Content Include="Content\appData\Products\Season_3\Normal\3240.jpg" />
+    <Content Include="Content\appData\Products\Season_4\Min\3241.jpg" />
+    <Content Include="Content\appData\Products\Season_4\Min\4501.jpg" />
+    <Content Include="Content\appData\Products\Season_4\Min\4502.jpg" />
+    <Content Include="Content\appData\Products\Season_4\Normal\3241.jpg" />
+    <Content Include="Content\appData\Products\Season_4\Normal\4501.jpg" />
+    <Content Include="Content\appData\Products\Season_4\Normal\4502.jpg" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\main.css" />
@@ -265,31 +300,31 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\css\bootstrap.min.css.map" />
     <Content Include="Content\css\bootstrap.css.map" />
-    <EntityDeploy Include="Models\OnlinePlatbyModels.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>OnlinePlatbyModels.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <Content Include="img\close.png" />
     <Content Include="img\loading.gif" />
     <Content Include="img\next.png" />
     <Content Include="img\prev.png" />
-    <Content Include="Models\OnlinePlatbyModels.edmx.diagram">
-      <DependentUpon>OnlinePlatbyModels.edmx</DependentUpon>
+    <Content Include="Models\Models.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Models.edmx</DependentUpon>
+      <LastGenOutput>Models.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Models.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Models.edmx</DependentUpon>
+      <LastGenOutput>Models.cs</LastGenOutput>
     </Content>
     <Content Include="sass\_variables.sass" />
     <Content Include="sass\screen.sass" />
     <Content Include="sass\lightbox.sass" />
+    <EntityDeploy Include="Models\Models.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Models.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Models.edmx.diagram">
+      <DependentUpon>Models.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />
-    <Content Include="Models\OnlinePlatbyModels.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OnlinePlatbyModels.edmx</DependentUpon>
-      <LastGenOutput>OnlinePlatbyModels.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\OnlinePlatbyModels.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OnlinePlatbyModels.edmx</DependentUpon>
-      <LastGenOutput>OnlinePlatbyModels.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />
@@ -347,10 +382,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\appData\" />
     <Folder Include="Content\img\" />
     <Folder Include="Scripts\myScripts\" />
-    <Folder Include="Views\Baske\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -17,11 +17,11 @@ namespace onlinePlatby.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ProductVariant()
         {
+            this.BasketProducts = new HashSet<BasketProduct>();
+            this.CategoryProducts = new HashSet<CategoryProduct>();
             this.DigitalProducts = new HashSet<DigitalProduct>();
             this.ProductAttachments = new HashSet<ProductAttachment>();
             this.PropertyCombinations = new HashSet<PropertyCombination>();
-            this.Baskets = new HashSet<Basket>();
-            this.ProductCategories = new HashSet<ProductCategory>();
             this.Images = new HashSet<Image>();
         }
     
@@ -38,6 +38,10 @@ namespace onlinePlatby.Models
         public decimal SalePrice { get; set; }
         public string Code { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BasketProduct> BasketProducts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CategoryProduct> CategoryProducts { get; set; }
         public virtual Currency Currency { get; set; }
         public virtual Currency Currency1 { get; set; }
         public virtual Currency Currency2 { get; set; }
@@ -50,10 +54,6 @@ namespace onlinePlatby.Models
         public virtual ICollection<ProductAttachment> ProductAttachments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PropertyCombination> PropertyCombinations { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Basket> Baskets { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductCategory> ProductCategories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Image> Images { get; set; }
     }

@@ -17,7 +17,7 @@ namespace onlinePlatby.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Basket()
         {
-            this.ProductVariants = new HashSet<ProductVariant>();
+            this.BasketProducts = new HashSet<BasketProduct>();
         }
     
         public int Id { get; set; }
@@ -26,6 +26,6 @@ namespace onlinePlatby.Models
         public System.DateTime LastDateEdited { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductVariant> ProductVariants { get; set; }
+        public virtual ICollection<BasketProduct> BasketProducts { get; set; }
     }
 }
