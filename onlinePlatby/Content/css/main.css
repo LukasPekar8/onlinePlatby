@@ -27,3 +27,6 @@ width: 100%;
 #productImages .wrapper{
     text-align: center;
 }
+.basketAnchor img{
+    max-height: 20px;
+}

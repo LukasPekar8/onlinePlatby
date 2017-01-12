@@ -1,0 +1,47 @@
+﻿#parts{
+    background-color: #fff;
+    color: black;
+    border: 2px solid black;
+}
+.row{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+#parts .part{
+    padding: 1rem 0rem;
+}
+#parts .part.active{
+     background-color: #c6c6c6;
+}
+#basketProductsTable td{
+    vertical-align: central;
+}
+#basketProductsTable td p{
+    margin-top: 25px;
+    margin-bottom: 0px;
+}
+#basketProductsTable td img{
+    height: 70px;
+}
+.continueButton{
+    float: right;
+    display: block;
+    margin-bottom: 10px;
+}
+.continueButton:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+#basketProductsTable a{
+    margin-top: 1.8rem;
+    display: block;
+}
+#basketProductsTable a span{
+    font-size: 2rem;
+}
+
+/*PAYMENT AND TRANSPORTATION*/
+#paymentAndTransportation .paymentSelection .paymentType img{
+    margin: 0rem 1rem;
+}

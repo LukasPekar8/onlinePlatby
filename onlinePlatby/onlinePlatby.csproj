@@ -254,6 +254,7 @@
     <Compile Include="Models\Transport.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\BasketVM.cs" />
     <Compile Include="Models\ViewModels\ProductCategoryVM.cs" />
     <Compile Include="Models\ViewModels\ProductVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -286,10 +287,12 @@
     <Content Include="Content\appData\Products\Season_4\Normal\3241.jpg" />
     <Content Include="Content\appData\Products\Season_4\Normal\4501.jpg" />
     <Content Include="Content\appData\Products\Season_4\Normal\4502.jpg" />
+    <Content Include="Content\css\basket.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\main.css" />
     <Content Include="Content\css\products.css" />
+    <Content Include="Content\img\1484242257_ExpandLess.png" />
     <Content Include="Content\lightbox.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -341,6 +344,8 @@
     <Content Include="Scripts\lightbox-2.6.js" />
     <Content Include="Scripts\lightbox-2.6.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\myScripts\addToBasket.js" />
+    <Content Include="Scripts\myScripts\basket.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -382,8 +387,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\img\" />
-    <Folder Include="Scripts\myScripts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

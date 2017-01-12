@@ -2,6 +2,9 @@
 @{
     ViewBag.Title = Model.ProductCategory.Name;
 }
+@section Scripts{
+    <script src="~/Scripts/myScripts/addToBasket.js"></script>
+}
 
 <h1>@Model.ProductCategory.Name</h1>
 <p>@Model.ProductCategory.Description</p>
@@ -18,7 +21,7 @@
                     <div class="caption">
                         <h3>@item.ProductVariant.UniqueCombination</h3>
                         <p>@item.Product.ShortDescription</p>
-                        <p><a href="@Url.Action("ProductDetail", "Home", new { Id = item.ProductVariant.Id })" class="btn btn-primary" role="button">Detail</a> <a href="#" class="btn btn-default" role="button">Koupit</a></p>
+                        <p><a href="@Url.Action("ProductDetail", "Home", new { Id = item.ProductVariant.Id })" class="btn btn-primary" role="button">Detail</a> <a class="btn btn-default buyButton" data-productVariantId="@item.ProductVariant.Id" role="button">Koupit</a></p>
                     </div>
                 </div>
             </div>
