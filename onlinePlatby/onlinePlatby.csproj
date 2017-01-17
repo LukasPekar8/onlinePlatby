@@ -170,6 +170,7 @@
     <Compile Include="Controllers\BasketController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="DbContexts\AppDb.cs" />
     <Compile Include="DbContexts\IdentityDb.cs" />
     <Compile Include="Global.asax.cs">
@@ -197,6 +198,7 @@
     <Compile Include="Models\DigitalProduct.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmailManager.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Image.cs">
       <DependentUpon>Models.tt</DependentUpon>
@@ -255,6 +257,7 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\BasketVM.cs" />
+    <Compile Include="Models\ViewModels\OrderVM.cs" />
     <Compile Include="Models\ViewModels\ProductCategoryVM.cs" />
     <Compile Include="Models\ViewModels\ProductVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -346,6 +349,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\myScripts\addToBasket.js" />
     <Content Include="Scripts\myScripts\basket.js" />
+    <Content Include="Scripts\myScripts\renderPayPalExpressCheckout.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -384,6 +388,8 @@
     <Content Include="Views\Home\Category.cshtml" />
     <Content Include="Views\Home\ProductDetail.cshtml" />
     <Content Include="Views\Basket\Index.cshtml" />
+    <Content Include="Views\Payment\PayPal.cshtml" />
+    <Content Include="Views\Basket\OrderIsSuccessful.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

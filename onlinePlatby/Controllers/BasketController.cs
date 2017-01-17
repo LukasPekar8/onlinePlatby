@@ -4,6 +4,7 @@ using onlinePlatby.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -24,7 +25,7 @@ namespace onlinePlatby.Controllers
         {
             int cookieId = -1;
 
-            if (Request.Cookies["userId"] != null)
+            if (Request.Cookies["userId"] != null && (Request.Cookies["userId"].Value != ""))
                 cookieId = int.Parse(Server.HtmlEncode(Request.Cookies["userId"].Value));
 
             Basket basket = new Basket();
@@ -75,7 +76,7 @@ namespace onlinePlatby.Controllers
 
                 int cookieId = -1;
 
-                if (Request.Cookies["userId"] != null)
+                if (Request.Cookies["userId"] != null && (Request.Cookies["userId"].Value != ""))
                     cookieId = int.Parse(Server.HtmlEncode(Request.Cookies["userId"].Value));
                 else
                 {
@@ -102,7 +103,15 @@ namespace onlinePlatby.Controllers
                 }
 
                 // Chech if the product already exist
-                if (!this.db.BasketProducts.Any(b => b.ProductVariantId == ProductVariantId))
+                bool isTaken = false;
+                foreach (var item in this.db.BasketProducts.Where(b => b.BasketId == basket.Id))
+                {
+                    if (item.ProductVariantId == ProductVariantId)
+                    {
+                        isTaken = true;
+                    }
+                }
+                if (!isTaken)
                 {
                     // Now I have basket and product variant
                     this.db.BasketProducts.Add(new BasketProduct { BasketId = basket.Id, ProductVariantId = productVariant.Id });
@@ -112,7 +121,7 @@ namespace onlinePlatby.Controllers
                 }
                 else
                 {
-                    return "alreadyFuckingExists";
+                    return "Produkt již máte v košíku";
                 }
             }
             catch(Exception e)
@@ -137,6 +146,78 @@ namespace onlinePlatby.Controllers
             this.db.SaveChanges();
 
             return RedirectToAction("Index", "Basket");
+        }
+
+        [HttpPost]
+        public ActionResult MakeOrder(string payment, string transportation, int[] productVariants, int[] counts, string email, string name, string phone)
+        {
+            List<ProductVM> productVMs = new List<ProductVM>();
+            decimal finalPrice = 0;
+
+            for (int i = 0; i < productVariants.Count(); i++)
+            {
+                ProductVariant productVariant = this.db.ProductVariants.Find(productVariants[i]);
+                Product product = this.db.Products.Find(productVariant.ProductId);
+                string mainImageFilePath = this.db.Images.Find(productVariant.MainImageId).Url;
+                productVMs.Add(new ProductVM { ProductVariant = productVariant, Product = product, MainImageFilePath = mainImageFilePath });
+
+                decimal thisProductPrice = productVariant.SalePrice * counts[i];
+                finalPrice += thisProductPrice;
+            }
+
+            if (payment == "paypal") { 
+                TempData["ProductVMs"] = productVMs;
+                return RedirectToAction("PayPal", "Payment", new { FinalPrice = finalPrice, Email = email, Name = name, Phone = phone });
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public string OrderSuccess( string email, string name, decimal finalPrice)
+        {
+            try
+            {
+                // Sending the mail
+                MailAddress from = new MailAddress("bonsaiwebform@gmail.com", "Bonsai-Development - Formulář");
+                MailAddress to = new MailAddress(email);
+                EmailManager emailManager = new EmailManager(from, "H0d0r-123456");
+                string body = "Objednávka přijata <br /> Jméno: " + name + "<br /> Email: " + email + "<br /> Cena objednávky: " + finalPrice.ToString() + " Kč <br /> Děkujeme za nákup.";
+                emailManager.SendEmail(to, "Objednávka přijata", body);
+
+                // Deleting the basket (if exists)
+                int cookieId = -1;
+                if (Request.Cookies["userId"] != null)
+                {
+                    cookieId = int.Parse(Server.HtmlEncode(Request.Cookies["userId"].Value));
+                    HttpCookie myCookie = Request.Cookies["userId"];
+                    myCookie.Value = null;
+                    Response.Cookies.Add(myCookie);
+                }
+
+                if (cookieId != -1)
+                {
+                List<BasketProduct> basketProducts = this.db.BasketProducts.Where(b => b.BasketId == cookieId).ToList();
+                foreach (BasketProduct b in basketProducts)
+                {
+                    this.db.BasketProducts.Remove(b);
+                }
+                this.db.Baskets.Remove(this.db.Baskets.Find(cookieId));
+                this.db.SaveChanges();
+                }
+
+
+                return "success";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+
+        }
+
+        public ActionResult OrderIsSuccessful()
+        {
+            return View();
         }
     }
 }

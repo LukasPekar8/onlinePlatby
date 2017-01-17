@@ -45,3 +45,6 @@
 #paymentAndTransportation .paymentSelection .paymentType img{
     margin: 0rem 1rem;
 }
+table tbody td input{
+    margin-top: 2rem;
+}

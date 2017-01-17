@@ -10,131 +10,147 @@
 }
 
 @* Order steps *@
-<div id="parts" class="row">
-    <div>
-        <a class="part col-md-3 text-center active tableOfProductsBtn">
-            Košík
-        </a>
-        <a class="part col-md-3 text-center paymentAndTransportBtn">
-            Platba a Doprava
-        </a>
-        <a class="part col-md-3 text-center infoAboutCustomerBtn">
-            Informace o vás
-        </a>
-        <a class="part col-md-3 text-center orderFinish">
-            Dokončení objednávky
-        </a>
+<form method="post" action="@Url.Action("MakeOrder", "Basket")" enctype="multipart/form-data">
+    <div id="parts" class="row">
+        <div>
+            <a class="part col-md-3 text-center active tableOfProductsBtn">
+                Košík
+            </a>
+            <a class="part col-md-3 text-center paymentAndTransportBtn">
+                Platba a Doprava
+            </a>
+            <a class="part col-md-3 text-center infoAboutCustomerBtn">
+                Informace o vás
+            </a>
+            <a class="part col-md-3 text-center orderFinish">
+                Dokončení objednávky
+            </a>
+        </div>
     </div>
-</div>
 
-<h2>Košík</h2>
+    <h2>Košík</h2>
 
-@* Table of products *@
-<div id="tableOfProducts">
-    <div class="container">
-        <table id="basketProductsTable" class="table table-striped">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Název</th>
-                    <th>Skladem</th>
-                    <th>Množství</th>
-                    <th>Cena bez DPH</th>
-                    <th>Cena s DPH</th>
-                    <th>Odebrat z košíku?</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model.ProductVMs != null)
-                {
-                    if (Model.ProductVMs.Count() > 0)
+    @* Table of products *@
+    <div id="tableOfProducts">
+        <div class="container">
+            <table id="basketProductsTable" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Název</th>
+                        <th>Skladem</th>
+                        <th>Množství</th>
+                        <th>Cena s DPH</th>
+                        <th>Odebrat z košíku?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.ProductVMs != null)
                     {
-                        foreach (var item in Model.ProductVMs)
+                        if (Model.ProductVMs.Count() > 0)
                         {
-                            <tr>
-                                <td><img src="@item.MainImageFilePath" alt="@item.ProductVariant.UniqueCombination" /></td>
-                                <td><p>@item.ProductVariant.UniqueCombination</p></td>
-                                <td><p>Skladem</p></td>
-                                <td><p>1</p></td>
-                                <td><p>@item.ProductVariant.RecommendedPrice Kč</p></td>
-                                <td><p>@item.ProductVariant.SalePrice</p></td>
-                                <td class="text-center"><a href="@Url.Action("DeleteBasketProduct", "Basket", new { BasketId = Model.Basket.Id, ProductVariantId = item.ProductVariant.Id })"><span class="glyphicon glyphicon-trash"></span></a></td>
-                            </tr>
+                            foreach (var item in Model.ProductVMs)
+                            {
+                                <tr>
+                                    <td><img src="@item.MainImageFilePath" alt="@item.ProductVariant.UniqueCombination" /></td>
+                                    <td><p>@item.ProductVariant.UniqueCombination</p></td>
+                                    <td><p>Skladem</p></td>
+                                    <td><input class="productCountInput" type="number" value="1" name="counts" /></td>
+                                    <td><p class="salePrice" data-salePrice="@item.ProductVariant.SalePrice"><span class="fullSalePrice">@(item.ProductVariant.SalePrice.ToString().Remove(item.ProductVariant.SalePrice.ToString().Length - 2, 2))</span> Kč </p></td>
+                                    <td class="text-center"><a href="@Url.Action("DeleteBasketProduct", "Basket", new { BasketId = Model.Basket.Id, ProductVariantId = item.ProductVariant.Id })"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                </tr>
+                            }
                         }
                     }
+                </tbody>
+            </table>
+            <p class="fullPrice">
+                @{
+                    string totalPrice = "";
+                    if (Model != null)
+                    {
+                        if (Model.ProductVMs != null)
+                        {
+                            decimal total = Model.ProductVMs.Sum(m => m.ProductVariant.SalePrice);
+                            totalPrice = String.Format("{0:0.##}", total.ToString());
+                            totalPrice = totalPrice.Remove(totalPrice.Length - 2, 2);
+                        }
+                    }
+
+
                 }
-            </tbody>
-        </table>
+                Celková cena je : <span class="fullOrderPrice">@totalPrice</span> Kč
+            </p>
+        </div>
+        <div class="row">
+            <a class="continueButton btn btn-primary paymentAndTransportBtn">
+                Pokračovat
+            </a>
+        </div>
     </div>
-    <div class="row">
-        <a class="continueButton btn btn-primary paymentAndTransportBtn">
-            Pokračovat
-        </a>
-    </div>
-</div>
 
 
 
 
 
-@* PAYMENT AND TRANSPORTATION *@
-<div id="paymentAndTransportation" class="hidden">
-    <div class="row">
-        <h2>Platba a Doprava</h2>
-        <div>
+    @* PAYMENT AND TRANSPORTATION *@
+    <div id="paymentAndTransportation" class="hidden">
+        <div class="row">
+            <h2>Platba a Doprava</h2>
             <div>
-                <div class="col-md-6">
-                    <h3>Platba</h3>
-                    <p>Vyberte způsob platby</p>
-                    <div class="paymentSelection">
-                        <div class="paymentType">
-                            <p>
-                                <input type="radio" name="payment" value="dobirka" />
-                                <img src="http://placehold.it/200x70" alt="dobírka" />Dobírka
-                            </p>
-                        </div>
-                        <div class="paymentType">
-                            <p>
-                                <input type="radio" name="payment" value="bankovniPrevod" />
-                                <img src="http://placehold.it/200x70" alt="bankovní převod" />Bankovním převodem
-                            </p>
-                        </div>
-                        <div class="paymentType">
-                            <p>
-                                <input type="radio" checked="checked" name="payment" value="paypal" />
-                                <img src="http://placehold.it/200x70" alt="paypal" />PayPal
-                            </p>
-                        </div>
-                        <div class="paymentType">
-                            <p>
-                                <input type="radio" name="stripe" />
-                                <img src="http://placehold.it/200x70" alt="stripe" />Stripe
-                            </p>
+                <div>
+                    <div class="col-md-6">
+                        <h3>Platba</h3>
+                        <p>Vyberte způsob platby</p>
+                        <div class="paymentSelection">
+                            <div class="paymentType">
+                                <p>
+                                    <input type="radio" name="payment" value="dobirka" />
+                                    <img src="http://placehold.it/200x70" alt="dobírka" />Dobírka
+                                </p>
+                            </div>
+                            <div class="paymentType">
+                                <p>
+                                    <input type="radio" name="payment" value="bankovniPrevod" />
+                                    <img src="http://placehold.it/200x70" alt="bankovní převod" />Bankovním převodem
+                                </p>
+                            </div>
+                            <div class="paymentType">
+                                <p>
+                                    <input type="radio" checked="checked" name="payment" value="paypal" />
+                                    <img src="http://placehold.it/200x70" alt="paypal" />PayPal
+                                </p>
+                            </div>
+                            <div class="paymentType">
+                                <p>
+                                    <input type="radio" name="stripe" />
+                                    <img src="http://placehold.it/200x70" alt="stripe" />Stripe
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <h3>Doprava</h3>
-                    <p>Vyberte způsob dopravy</p>
-                    <div class="transportationSelection">
-                        <div class="transportationSelectionType">
-                            <p>
-                                <input checked="checked" type="radio" name="transportation" value="posta" />
-                                <img src="http://placehold.it/200x70" alt="posta" />
-                                Pošta
-                            </p>
+                    <div class="col-md-6">
+                        <h3>Doprava</h3>
+                        <p>Vyberte způsob dopravy</p>
+                        <div class="transportationSelection">
+                            <div class="transportationSelectionType">
+                                <p>
+                                    <input checked="checked" type="radio" name="transportation" value="posta" />
+                                    <img src="http://placehold.it/200x70" alt="posta" />
+                                    Pošta
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <a class="continueButton btn btn-primary infoAboutCustomerBtn">
+                Pokračovat
+            </a>
+        </div>
     </div>
-    <div class="row">
-        <a class="continueButton btn btn-primary infoAboutCustomerBtn">
-            Pokračovat
-        </a>
-    </div>
-</div>
 
     @* INFORMATION ABOUT YOU *@
     <div id="infoAboutCustomer" class="hidden">
@@ -143,15 +159,15 @@
             <div class="col-md-6 col-md-offset-3">
                 <div class="form-group">
                     <label class="label" for="jmenoAPrijmeni">Jméno a Příjmení</label>
-                    <input class="form-control" id="jmenoAPrijmeni" type="text" value="Ondřej Sokol"/>
+                    <input class="form-control" name="name" id="jmenoAPrijmeni" type="text" value="Ondřej Sokol" />
                 </div>
                 <div class="form-group">
                     <label class="label" for="telefonniCislo">Telefonní číslo</label>
-                    <input class="form-control" id="telefonniCislo" type="text" value="+420 602 215 523" />
+                    <input class="form-control" name="phone" id="telefonniCislo" type="text" readonly value="+420 602 215 523" />
                 </div>
                 <div class="form-group">
                     <label class="label" for="email">Email</label>
-                    <input class="form-control" id="email" type="text" required placeholder="ondrej.sokol@pslib.cz" />
+                    <input class="form-control" name="email" id="email" type="text" required placeholder="ondrej.sokol@pslib.cz" />
                 </div>
             </div>
             <div class="col-md-12">
@@ -160,68 +176,57 @@
                 </a>
             </div>
         </div>
-     </div>
+    </div>
 
 
     @* ORDER FINISH  *@
-@* Table of products *@
-<div id="orderFinish" class="hidden">
-    <div class="container">
-        <h3>Kontaktní údaje</h3>
-        <p>Email: <span id="customerEmail">ondrej.sokol@pslib.cz</span></p>
-        <p>Telefon: <span id="customerPhone">+420 521 215 236</span></p>
+    @* Table of products *@
+    <div id="orderFinish" class="hidden">
+        <div class="container">
+            <h3>Kontaktní údaje</h3>
+            <p>Email: <span id="customerEmail">ondrej.sokol@pslib.cz</span></p>
+            <p>Telefon: <span id="customerPhone">+420 602 215 523</span></p>
+        </div>
+        <div class="container">
+            <table id="basketProductsTable" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Název</th>
+                        <th>Skladem</th>
+                        <th>Množství</th>
+                        <th>Cena s DPH</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.ProductVMs != null)
+                    {
+                        if (Model.ProductVMs.Count() > 0)
+                        {
+                            foreach (var item in Model.ProductVMs)
+                            {
+                                <tr>
+                                    <td><input type="number" class="hidden" name="productVariants" value="@item.ProductVariant.Id" /><img src="@item.MainImageFilePath" alt="produkt" /></td>
+                                    <td><p>@item.ProductVariant.UniqueCombination</p></td>
+                                    <td><p>Skladem</p></td>
+                                    <td><p>1</p></td>
+                                    <td><p>@item.ProductVariant.SalePrice Kč</p></td>
+                                </tr>
+                            }
+
+                        }
+
+                    }
+                </tbody>
+            </table>
+            <p class="fullPrice">
+                Celková cena je : @totalPrice Kč
+            </p>
+        </div>
+        <div class="row">
+            <input type="submit" class="continueButton btn btn-primary"
+                value="Dokončit a zaplatit"
+            />
+        </div>
     </div>
-    <div class="container">
-        <table id="basketProductsTable" class="table table-striped">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Název</th>
-                    <th>Skladem</th>
-                    <th>Množství</th>
-                    <th>Cena bez DPH</th>
-                    <th>Cena s DPH</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><img src="http://placehold.it/100x100" alt="produkt" /></td>
-                    <td><p>Název produktu</p></td>
-                    <td><p>Skladem</p></td>
-                    <td><p>1</p></td>
-                    <td><p>999 Kč</p></td>
-                    <td><p>1299 Kč</p></td>
-                </tr>
-                <tr>
-                    <td><img src="http://placehold.it/100x100" alt="produkt" /></td>
-                    <td><p>Název produktu</p></td>
-                    <td><p>Skladem</p></td>
-                    <td><p>1</p></td>
-                    <td><p>999 Kč</p></td>
-                    <td><p>1299 Kč</p></td>
-                </tr>
-                <tr>
-                    <td><img src="http://placehold.it/100x100" alt="produkt" /></td>
-                    <td><p>Název produktu</p></td>
-                    <td><p>Skladem</p></td>
-                    <td><p>1</p></td>
-                    <td><p>999 Kč</p></td>
-                    <td><p>1299 Kč</p></td>
-                </tr>
-                <tr>
-                    <td><img src="http://placehold.it/100x100" alt="produkt" /></td>
-                    <td><p>Název produktu</p></td>
-                    <td><p>Skladem</p></td>
-                    <td><p>1</p></td>
-                    <td><p>999 Kč</p></td>
-                    <td><p>1299 Kč</p></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="row">
-        <a class="continueButton btn btn-primary">
-            Dokončit a zaplatit
-        </a>
-    </div>
-</div>
+</form>

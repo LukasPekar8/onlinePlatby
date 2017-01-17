@@ -59,7 +59,8 @@ $(function () {
     // From info about you to Order finish
     $("#infoAboutCustomer .orderFinish").click(function () {
         var email = $("#email").val();
-        console.log(email);
+        $("#customerEmail").empty();
+        $("#customerEmail").append(email);
         if (re.test(email)) {
             $("#infoAboutCustomer").addClass("hidden"); // hide 1part
             $("#orderFinish").removeClass("hidden"); // show 2part
@@ -70,5 +71,25 @@ $(function () {
             $("#email").css("border", "solid red 4px");
         }
 
+    });
+
+
+    // Product count
+    $(".productCountInput").change(function () {
+        var priceOfOneProduct = parseFloat($(this).parent().parent().find(".salePrice").attr("data-salePrice"));
+        var count = parseFloat($(this).val());
+        var fullPrice = count * priceOfOneProduct;
+
+        $(this).parent().parent().find(".salePrice").empty();
+        $(this).parent().parent().find(".salePrice").append("<span class='fullSalePrice'>" + fullPrice + "</span>" + ",00 Kč");
+
+        var sumPrice = 0.00;
+        // Sum all prices
+        $.each($("#basketProductsTable .fullSalePrice"), function (i, d) {
+            sumPrice += parseInt($(d).text());
+        });
+
+        $(".fullOrderPrice").empty();
+        $(".fullOrderPrice").append(sumPrice + ",00");
     });
 });
