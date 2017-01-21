@@ -9,6 +9,13 @@ namespace onlinePlatby.Models.ViewModels
     {
         public List<ProductVM> ProductVMs { get; set; }
         public decimal FinalPrice { get; set; }
+
+        public decimal StripeFinalPrice {
+            get
+            {
+                return FinalPrice * 100;
+            }
+        }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }

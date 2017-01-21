@@ -390,6 +390,7 @@
     <Content Include="Views\Basket\Index.cshtml" />
     <Content Include="Views\Payment\PayPal.cshtml" />
     <Content Include="Views\Basket\OrderIsSuccessful.cshtml" />
+    <Content Include="Views\Payment\Stripe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

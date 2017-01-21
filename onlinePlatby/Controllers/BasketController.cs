@@ -170,6 +170,12 @@ namespace onlinePlatby.Controllers
                 return RedirectToAction("PayPal", "Payment", new { FinalPrice = finalPrice, Email = email, Name = name, Phone = phone });
             }
 
+            if (payment == "stripe")
+            {
+                TempData["ProductVMs"] = productVMs;
+                return RedirectToAction("Stripe", "Payment", new { FinalPrice = finalPrice, Email = email, Name = name, Phone = phone });
+            }
+
             return RedirectToAction("Index");
         }
 
@@ -205,7 +211,6 @@ namespace onlinePlatby.Controllers
                 this.db.SaveChanges();
                 }
 
-
                 return "success";
             }
             catch (Exception e)
@@ -213,6 +218,40 @@ namespace onlinePlatby.Controllers
                 return e.Message;
             }
 
+        }
+
+        [HttpPost]
+        public ActionResult StripeSuccess(string email ,string name, decimal finalPrice)
+        {
+                // Sending the mail
+                MailAddress from = new MailAddress("bonsaiwebform@gmail.com", "Bonsai-Development - Formulář");
+                MailAddress to = new MailAddress(email);
+                EmailManager emailManager = new EmailManager(from, "H0d0r-123456");
+                string body = "Objednávka přijata <br /> Jméno: " + name + "<br /> Email: " + email + "<br /> Cena objednávky: " + finalPrice.ToString() + " Kč <br /> Děkujeme za nákup.";
+                emailManager.SendEmail(to, "Objednávka přijata", body);
+
+                // Deleting the basket (if exists)
+                int cookieId = -1;
+                if (Request.Cookies["userId"] != null)
+                {
+                    cookieId = int.Parse(Server.HtmlEncode(Request.Cookies["userId"].Value));
+                    HttpCookie myCookie = Request.Cookies["userId"];
+                    myCookie.Value = null;
+                    Response.Cookies.Add(myCookie);
+                }
+
+                if (cookieId != -1)
+                {
+                    List<BasketProduct> basketProducts = this.db.BasketProducts.Where(b => b.BasketId == cookieId).ToList();
+                    foreach (BasketProduct b in basketProducts)
+                    {
+                        this.db.BasketProducts.Remove(b);
+                    }
+                    this.db.Baskets.Remove(this.db.Baskets.Find(cookieId));
+                    this.db.SaveChanges();
+                }
+
+            return RedirectToAction("OrderIsSuccessful");
         }
 
         public ActionResult OrderIsSuccessful()

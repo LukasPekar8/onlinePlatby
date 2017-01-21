@@ -13,11 +13,13 @@ $(function () {
 
     // To paymentAndTransportation
     $("#parts .paymentAndTransportBtn").click(function () {
-        $("#paymentAndTransportation").removeClass("hidden");
-        $("#orderFinish").addClass("hidden");
-        $("#infoAboutCustomer").addClass("hidden");
-        $("#tableOfProducts").addClass("hidden"); // hide 1part
-        $("#parts .paymentAndTransportBtn").addClass("active");
+        if ($("#basketProductsTable tbody tr").length > 1) {
+            $("#paymentAndTransportation").removeClass("hidden");
+            $("#orderFinish").addClass("hidden");
+            $("#infoAboutCustomer").addClass("hidden");
+            $("#tableOfProducts").addClass("hidden"); // hide 1part
+            $("#parts .paymentAndTransportBtn").addClass("active");
+        }
     });
 
     // To infoAboutCustomer
@@ -44,9 +46,11 @@ $(function () {
 
     // From table of products to Payment and Transportation
     $("#tableOfProducts .paymentAndTransportBtn").click(function () {
-        $("#tableOfProducts").addClass("hidden"); // hide 1part
-        $("#paymentAndTransportation").removeClass("hidden"); // show 2part
-        $("#parts .paymentAndTransportBtn").addClass("active");
+        if ($("#basketProductsTable tbody tr").length > 1) {
+            $("#tableOfProducts").addClass("hidden"); // hide 1part
+            $("#paymentAndTransportation").removeClass("hidden"); // show 2part
+            $("#parts .paymentAndTransportBtn").addClass("active");
+        }
     });
 
     // From Payment and Transportation to Info about customer

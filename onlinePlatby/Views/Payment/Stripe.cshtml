@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "Stripe";
+}
+
+@model onlinePlatby.Models.ViewModels.OrderVM
+@{
+    ViewBag.Title = "PayPal";
+}
+@section Styles{
+    <link href="~/Content/css/basket.css" rel="stylesheet" />
+}
+@section Scripts{
+}
+
+<h3>Stripe platba</h3>
+<p>Zkušební karta: 4242 4242 4242 4242</p>
+
+<div class="text-center col-md-4 col-md-offset-4">
+    <form action="@Url.Action("StripeSuccess", "Basket", new { email = Model.Email, name = Model.Name, finalPrice = Model.FinalPrice})" method="POST">
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="pk_test_IsZzrUlPC0FR5DyCZztUWqYj"
+                data-amount=@Model.StripeFinalPrice
+                data-name="Stripe.com"
+                data-description="Widget"
+                data-currency="CZK"
+                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                data-locale="auto">
+        </script>
+    </form>
+
+</div>
+<div id="finalPriceHolder" data-finalPrice="@Model.FinalPrice">
+
+</div>
+<div id="emailHolder" data-email="@Model.Email">
+    Email : @Model.Email
+</div>
+<div id="nameHolder" data-name="@Model.Name">
+    Jméno: @Model.Name
+</div>
+
+@* Table of products *@
+<div id="tableOfProducts">
+    <div class="container">
+        <table id="basketProductsTable" class="table table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Název</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ProductVMs != null)
+                {
+                    if (Model.ProductVMs.Count() > 0)
+                    {
+                        foreach (var item in Model.ProductVMs)
+                        {
+                            <tr>
+                                <td><img src="@item.MainImageFilePath" alt="@item.ProductVariant.UniqueCombination" /></td>
+                                <td><p>@item.ProductVariant.UniqueCombination</p></td>
+                                @*  <td><p class="salePrice" data-salePrice="@item.ProductVariant.SalePrice"><span class="fullSalePrice">@(item.ProductVariant.SalePrice.ToString().Remove(item.ProductVariant.SalePrice.ToString().Length - 2, 2))</span> Kč </p></td>*@
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+        <p class="fullPrice">
+            Celková cena je : <span class="fullOrderPrice">@Model.FinalPrice</span> Kč
+        </p>
+    </div>
+</div>
+
+
+

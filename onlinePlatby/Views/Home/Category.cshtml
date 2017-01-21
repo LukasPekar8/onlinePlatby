@@ -21,10 +21,32 @@
                     <div class="caption">
                         <h3>@item.ProductVariant.UniqueCombination</h3>
                         <p>@item.Product.ShortDescription</p>
-                        <p><a href="@Url.Action("ProductDetail", "Home", new { Id = item.ProductVariant.Id })" class="btn btn-primary" role="button">Detail</a> <a class="btn btn-default buyButton" data-productVariantId="@item.ProductVariant.Id" role="button">Koupit</a></p>
+                        <p><a href="@Url.Action("ProductDetail", "Home", new { Id = item.ProductVariant.Id })" class="btn btn-primary" role="button">Detail</a> <a class="btn btn-default buyButton" data-productVariantId="@item.ProductVariant.Id" data-toggle="modal" data-target="#productAdded" role="button">Koupit</a></p>
                     </div>
                 </div>
             </div>
         }
     </div>
 </section>
+
+<!-- Modal -->
+<div id="productAdded" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Produkt byl úspěšně přidán do košíku.</h4>
+            </div>
+            <div class="modal-body">
+                <p>Nyní můžete buď pokračovat v nákupu nebo přejít do košíku.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Zavřít</button>
+                <a class="btn btn-primary" href="@Url.Action("Index", "Basket")">Přejít do košíku</a>
+            </div>
+        </div>
+
+    </div>
+</div>

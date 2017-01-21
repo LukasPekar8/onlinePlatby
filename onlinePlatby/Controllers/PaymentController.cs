@@ -31,5 +31,20 @@ namespace onlinePlatby.Controllers
             };
             return View(vm);
         }
+
+        public ActionResult Stripe(decimal FinalPrice, string Email, string Name, string Phone)
+        {
+            List<ProductVM> productVMs = TempData["ProductVMs"] as List<ProductVM>;
+
+            OrderVM vm = new OrderVM
+            {
+                ProductVMs = productVMs,
+                FinalPrice = FinalPrice,
+                Name = Name,
+                Email = Email,
+                Phone = Phone
+            };
+            return View(vm);
+        }
     }
 }

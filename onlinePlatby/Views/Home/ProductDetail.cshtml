@@ -25,7 +25,7 @@
                 </p>
             </div>
             <div>
-                <a class="btn btn-primary buyButton" data-productVariantId="@Model.ProductVariant.Id">Přidat do košíku</a>
+                <a class="btn btn-primary buyButton" data-productVariantId="@Model.ProductVariant.Id" data-toggle="modal" data-target="#productAdded">Přidat do košíku</a>
             </div>
         </div>
     </div>
@@ -45,3 +45,25 @@
         <h3>Popis produktu</h3>
         @Html.Raw(Model.Product.LongDescription)
     </div>
+
+<!-- Modal -->
+<div id="productAdded" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Produkt byl úspěšně přidán do košíku.</h4>
+            </div>
+            <div class="modal-body">
+                <p>Nyní můžete buď pokračovat v nákupu nebo přejít do košíku.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Zavřít</button>
+                <a class="btn btn-primary" href="@Url.Action("Index", "Basket")">Přejít do košíku</a>
+            </div>
+        </div>
+
+    </div>
+</div>
