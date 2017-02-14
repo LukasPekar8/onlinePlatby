@@ -83,6 +83,7 @@ $(function () {
         var priceOfOneProduct = parseFloat($(this).parent().parent().find(".salePrice").attr("data-salePrice"));
         var count = parseFloat($(this).val());
         var fullPrice = count * priceOfOneProduct;
+        var productId = $(this).attr("data-productId");
 
         $(this).parent().parent().find(".salePrice").empty();
         $(this).parent().parent().find(".salePrice").append("<span class='fullSalePrice'>" + fullPrice + "</span>" + ",00 Kč");
@@ -95,5 +96,14 @@ $(function () {
 
         $(".fullOrderPrice").empty();
         $(".fullOrderPrice").append(sumPrice + ",00");
+
+        // Product recapitulation update
+        $(".count[data-productId='" + productId + "']").empty();
+        $(".count[data-productId='" + productId + "']").append(count);
+
+        $(".salePriceRecap[data-productId='" + productId + "']").empty();
+        $(".salePriceRecap[data-productId='" + productId + "']").append("<span class='fullSalePriceRecap'>" + fullPrice + "</span>" + ",00 Kč");
+
+
     });
 });

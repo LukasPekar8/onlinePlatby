@@ -306,6 +306,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\css\bootstrap.min.css.map" />
     <Content Include="Content\css\bootstrap.css.map" />
+    <Content Include="Content\img\stripeImg.png" />
+    <Content Include="Content\img\paypalImg.png" />
     <Content Include="img\close.png" />
     <Content Include="img\loading.gif" />
     <Content Include="img\next.png" />

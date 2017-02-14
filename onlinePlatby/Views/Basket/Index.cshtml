@@ -55,7 +55,7 @@
                                     <td><img src="@item.MainImageFilePath" alt="@item.ProductVariant.UniqueCombination" /></td>
                                     <td><p>@item.ProductVariant.UniqueCombination</p></td>
                                     <td><p>Skladem</p></td>
-                                    <td><input class="productCountInput" type="number" value="1" name="counts" /></td>
+                                    <td><input class="productCountInput" data-productId="@item.ProductVariant.Id" type="number" value="1" name="counts" /></td>
                                     <td><p class="salePrice" data-salePrice="@item.ProductVariant.SalePrice"><span class="fullSalePrice">@(item.ProductVariant.SalePrice.ToString().Remove(item.ProductVariant.SalePrice.ToString().Length - 2, 2))</span> Kč </p></td>
                                     <td class="text-center"><a href="@Url.Action("DeleteBasketProduct", "Basket", new { BasketId = Model.Basket.Id, ProductVariantId = item.ProductVariant.Id })"><span class="glyphicon glyphicon-trash"></span></a></td>
                                 </tr>
@@ -105,26 +105,14 @@
                         <div class="paymentSelection">
                             <div class="paymentType">
                                 <p>
-                                    <input type="radio" name="payment" value="dobirka" />
-                                    <img src="http://placehold.it/200x70" alt="dobírka" />Dobírka
-                                </p>
-                            </div>
-                            <div class="paymentType">
-                                <p>
-                                    <input type="radio" name="payment" value="bankovniPrevod" />
-                                    <img src="http://placehold.it/200x70" alt="bankovní převod" />Bankovním převodem
-                                </p>
-                            </div>
-                            <div class="paymentType">
-                                <p>
                                     <input type="radio" checked="checked" name="payment" value="paypal" />
-                                    <img src="http://placehold.it/200x70" alt="paypal" />PayPal
+                                    <img src="~/Content/img/paypalImg2.png" alt="paypal" />
                                 </p>
                             </div>
                             <div class="paymentType">
                                 <p>
                                     <input type="radio" name="payment" value="stripe" />
-                                    <img src="http://placehold.it/200x70" alt="stripe" />Stripe
+                                    <img src="~/Content/img/stripeImg.png" alt="stripe" />
                                 </p>
                             </div>
                         </div>
@@ -136,7 +124,7 @@
                             <div class="transportationSelectionType">
                                 <p>
                                     <input checked="checked" type="radio" name="transportation" value="posta" />
-                                    <img src="http://placehold.it/200x70" alt="posta" />
+                                    <img src="~/Content/img/ceskaPosta.jpg" alt="posta" />
                                     Pošta
                                 </p>
                             </div>
@@ -209,8 +197,8 @@
                                     <td><input type="number" class="hidden" name="productVariants" value="@item.ProductVariant.Id" /><img src="@item.MainImageFilePath" alt="produkt" /></td>
                                     <td><p>@item.ProductVariant.UniqueCombination</p></td>
                                     <td><p>Skladem</p></td>
-                                    <td><p>1</p></td>
-                                    <td><p>@item.ProductVariant.SalePrice Kč</p></td>
+                                    <td><p class="count" data-productId="@item.ProductVariant.Id">1</p></td>
+                                    <td><p class="salePriceRecap" data-productId="@item.ProductVariant.Id">@item.ProductVariant.SalePrice Kč</p></td>
                                 </tr>
                             }
 
@@ -220,7 +208,7 @@
                 </tbody>
             </table>
             <p class="fullPrice">
-                Celková cena je : @totalPrice Kč
+                Celková cena je : <span class="fullOrderPrice">@totalPrice</span> Kč
             </p>
         </div>
         <div class="row">
